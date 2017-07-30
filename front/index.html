@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>prescript vue</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1">
+    <link rel="stylesheet" type="text/css" href="build/css/global.css">
+   <!--  <link rel="stylesheet" type="text/css" href="build/css/style.css"> -->
+    <script type="text/javascript">
+      /*页面适配js*/
+      (function(winWidth){var timer='';function changeRem(){var deviceWidth=document.documentElement.clientWidth;if(deviceWidth>winWidth){deviceWidth=winWidth;}
+            document.documentElement.style.fontSize=deviceWidth/winWidth*100+'px';}
+            window.addEventListener('resize',function(){clearInterval(timer);timer=setTimeout(changeRem,30);},false);window.addEventListener("pageshow",function(e){if(e.persisted){clearTimeout(timer);timer=setTimeout(changeRem,30);}},false);changeRem();})(750);
+    </script>
+  </head>
+  <body>
+    <div id="app">
+        <router-view></router-view>
+    </div>
+  </body>
+  <script src="prescript.bundle.js"></script>
+</html>
