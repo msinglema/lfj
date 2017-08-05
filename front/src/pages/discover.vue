@@ -10,7 +10,8 @@
         </div>
 
         <p class="columnTitle"><span class="fl">推荐小组</span><a class="more fr" href="#">全部</a></p>
-        <div class="group">
+
+      <!--   <div class="group">
             <ul>
                 <li><a href="#"><img src="../../build/image/head2.jpg"/><p class="tit">妈妈爱宝宝</p><p class="smalltxt">宝宝常见病交流</p></a></li>
                 <li><a href="#"><img src="../../build/image/head2.jpg"/><p class="tit">妈妈爱宝宝</p><p class="smalltxt">宝宝常见病交流</p></a></li>
@@ -23,7 +24,7 @@
                 <li><a href="#"><img src="../../build/image/head2.jpg"/><p class="tit">妈妈爱宝宝</p><p class="smalltxt">宝宝常见病交流</p></a></li>
                 <li><a href="#"><img src="../../build/image/head2.jpg"/><p class="tit">妈妈爱宝宝</p><p class="smalltxt">宝宝常见病交流</p></a></li>
             </ul>
-        </div>
+        </div> -->
         <p class="h15"></p>
         <!--推荐话题-->
         <p class="columnTitle"><span class="fl">推荐话题</span><a class="more fr" href="#">全部</a></p>
@@ -63,21 +64,20 @@
             </ul>
         </div>
         <p class="paddBtm"></p>
-        <c-TabBar></c-TabBar>
+        <div class="bottomNav">
+            <a href="#">首页</a><a href="#">发现</a><a href="#">我的</a>
+        </div>
     </div>
 </template>
 
 
 <script>
-import Vue from 'vue'
-import TabBar from '../components/tabBar.vue'
-
 export default {
     methods: {
        
     },
     components:{
-        'c-TabBar' : TabBar
+        
     }
 }
 

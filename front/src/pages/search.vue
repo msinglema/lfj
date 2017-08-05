@@ -2,71 +2,82 @@
     <div class="main">
          <div class="search">
              <div class="searchIn">
-                <form method="post" action="#">
-                    <a href="javascript:;" class="searchBtn"></a>
-                    <input type="text" placeholder="小儿感冒" />
-                </form>
+                   <a href="javascript:;" class="searchBtn"></a>
+                   <input type="text" v-model="param.query"  @input="getSearchList" placeholder="小儿感冒" />
              </div>
          </div>
         <div class="columnNav">
-            <a class="cur" href="javascript:;">综合</a><a href="javascript:;">问答</a><a href="javascript:;">发现</a><a href="javascript:;">小组</a>
+            <a :class="{cur : param.filter == '1'}" @click="changeType('1')" href="javascript:;">综合</a>
+            <a :class="{cur : param.filter == '2'}" @click="changeType('2')" href="javascript:;">问答</a>
+            <a :class="{cur : param.filter == '3'}" @click="changeType('3')" href="javascript:;">发现</a>
+            <a :class="{cur : param.filter == '4'}" @click="changeType('4')" href="javascript:;">小组</a>
         </div>
         <p class="h15"></p>
-        <div class="infoList">
-            <p class="infotit"><span class="fontIcon fl">问答</span><a href="#" class="more fr">共46条</a></p>
-            <ul>
-                <li>
-                    <p class="user"><img src="../../build/image/head.jpg"/>王某某发表的回答</p>
-                    <p class="problem">这里小儿感冒问题</p>
-                    <p class="answer">这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答，这里是发表的回答这里是发表的回答。</p>
-                    <p class="bottom"><span>来自某话题</span><span>113评论</span><span>201有用</span></p>
-                </li>
-                
-                <li>
-                    <p class="user"><img src="../../build/image/head.jpg"/>王某某发表的回答</p>
-                    <p class="problem">这里小儿感冒问题</p>
-                    <p class="answer">这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答，这里是发表的回答这里是发表的回答。</p>
-                    <p class="bottom"><span>来自某话题</span><span>113评论</span><span>201有用</span></p>
-                </li>
-            </ul>
-        </div>
-        
-        <p class="h15"></p>
-        <div class="infoList">
-            <p class="infotit"><span class="fontIcon fl">发现</span><a href="#" class="more fr">共46条</a></p>
-            <ul>
-                <li>
-                    <p class="user"><img src="../../build/image/head.jpg"/>王某某发表的回答</p>
-                    <p class="problem">这里小儿感冒问题</p>
-                    <p class="answer">这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答，这里是发表的回答这里是发表的回答。</p>
-                    <p class="bottom"><span>来自某话题</span><span>113评论</span><span>201有用</span></p>
-                </li>
-                
-                <li>
-                    <p class="user"><img src="../../build/image/head.jpg"/>王某某发表的回答</p>
-                    <p class="problem">这里小儿感冒问题</p>
-                    <p class="answer">这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答，这里是发表的回答这里是发表的回答。</p>
-                    <p class="bottom"><span>来自某话题</span><span>113评论</span><span>201有用</span></p>
-                </li>
-            </ul>
-        </div>
-
-        <c-TabBar></c-TabBar>
+        <ul id='searchList' style="height:1000px">
+            <c-searchItem 
+             v-for="(item,index) in renderList"
+             v-bind:item="item"
+             v-bind:index="index"
+             :key="item.id"
+            ></c-searchItem>
+        </ul>
     </div>
 </template>
 
 
 <script>
-import Vue from 'vue'
-import TabBar from '../components/tabBar.vue'
+import Util from '../vuex/util.js'
+import {mapState, mapActions} from 'vuex'  
+import SearchItem from '../components/searchItem.vue'
+var searchTag = null;
 
 export default {
-    methods: {
-       
+    computed:Util.extend(mapState(['param','list','renderList','total']),{
+
+    }),
+    methods:Util.extend(mapActions(['getSearchListAction','changeTypeAction','resetPiAction','appendListAction']),{
+        getSearchList(){
+            searchTag && window.clearTimeout(searchTag)
+            searchTag = window.setTimeout(() =>{
+                this.resetPiAction()
+                this.getSearchListAction()
+            },300)
+        },
+        changeType(type){
+            if(this.param.filter == type) return
+            this.changeTypeAction(type)
+            this.resetPiAction()
+            this.getSearchListAction()   
+        }
+    }),
+    created(){
+        this.getSearchListAction()
+    },
+    mounted(){
+        let list = this.$el.querySelector('#searchList')
+        if(!list) return
+
+        window.onscroll = () => {
+            if(this.list.length == 0 || this.list.length == this.total){
+                return
+            }
+
+            if(list.clientHeight - window.innerHeight - window.scrollY <= 0){
+                if(this.renderList.length < this.list.length){
+                    this.appendListAction()
+                }else if(this.renderList.length == this.list.length){
+                    this.getSearchListAction()
+                }
+            }
+        }
+    },
+    destroyed(){
+        window.onscroll = null
     },
     components:{
-        'c-TabBar' : TabBar
-    }
+        'c-searchItem' : SearchItem
+    },
 }
 
 </script>
+
