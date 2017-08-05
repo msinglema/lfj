@@ -8,9 +8,9 @@
 			float:left; padding-top:0.6rem;
 			text-align:center;font-size:0.24rem;color:#1eac11;
 			&.active{}
-			&:nth-child(1){background:url(../image/index.jpg) no-repeat center 0.1rem;background-size:0.5rem 0.5rem;}
-			&:nth-child(2){background:url(../image/find.jpg) no-repeat center 0.1rem;background-size:0.5rem 0.5rem;}
-			&:nth-child(3){background:url(../image/user.jpg) no-repeat center 0.1rem;background-size:0.5rem 0.5rem;}
+			&:nth-child(1){background:url(../../build/image/index.jpg) no-repeat center 0.1rem;background-size:0.5rem 0.5rem;}
+			&:nth-child(2){background:url(../../build/image/find.jpg) no-repeat center 0.1rem;background-size:0.5rem 0.5rem;}
+			&:nth-child(3){background:url(../../build/image/user.jpg) no-repeat center 0.1rem;background-size:0.5rem 0.5rem;}
 		}
 	}
 </style>

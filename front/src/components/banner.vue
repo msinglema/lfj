@@ -14,9 +14,9 @@ export default {
     data:function(){
       return {
         items : [
-          {src: require('../image/banner-1.jpg'), alt:'1'},
-          {src: require('../image/banner-2.jpg'), alt:'2'},
-          {src: require('../image/banner-3.jpg'), alt:'3'}
+          {src: '../../build/image/banner-1.jpg', alt:'1'},
+          {src: '../../build/image/banner-2.jpg', alt:'2'},
+          {src: '../../build/image/banner-3.jpg', alt:'3'}
         ]
       }
     }

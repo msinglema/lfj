@@ -39,9 +39,9 @@ export default {
     data:function(){
        return {
           items : [
-          	{className:'ranking', label:'热门排行', src: require('../image/topic-1.svg'), alt:'1'},
-          	{className:'navigation', label:'就医导航', src: require('../image/topic-2.svg'), alt:'2'},
-          	{className:'measure', label:'健康测量', src: require('../image/topic-3.svg'), alt:'3'}
+          	{className:'ranking', label:'热门排行', src: '../../build/image/topic-1.svg', alt:'1'},
+          	{className:'navigation', label:'就医导航', src: '../../build/image/topic-2.svg', alt:'2'},
+          	{className:'measure', label:'健康测量', src: '../../build/image/topic-3.svg', alt:'3'}
         ]
        }
     }

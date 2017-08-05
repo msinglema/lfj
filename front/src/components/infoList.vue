@@ -44,19 +44,19 @@ export default {
        return {
           items : [
           	{
-              author:'马某某', img:require("../image/head.jpg"),
+              author:'马某某', img:require("../../build/image/head.jpg"),
               question:'这里小儿感冒问题', 
               answer: '这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答，这里是发表的回答这里是发表的回答。',
               source:'我的提问', comment:'113', like:'201'
             },
             {
-              author:'刘某某', img:require("../image/head.jpg"),
+              author:'刘某某', img:require("../../build/image/head.jpg"),
               question:'这里小儿感冒问题', 
               answer: '这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答，这里是发表的回答这里是发表的回答。',
               source:'某小组', comment:'113', like:'201'
             },
             {
-              author:'雷某某', img:require("../image/head.jpg"),
+              author:'雷某某', img:require("../../build/image/head.jpg"),
               question:'这里小儿感冒问题', 
               answer: '这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答，这里是发表的回答这里是发表的回答。',
               source:'某话题', comment:'113', like:'201'
