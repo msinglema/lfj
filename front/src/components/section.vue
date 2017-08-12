@@ -1,23 +1,23 @@
 <style lang="less">
 	.section-list{
 		background-color: #fff;
-		margin-bottom:20px;
+		margin-bottom:0.5rem;
 		.section-item{
 			display: inline-block;
 			width:33%;
 			.image{
-				width:64px;
-				margin:20px auto; padding: 16px;
-				border-radius:48px;
+				width:0.6rem;
+				margin:0.2rem auto; padding: 0.2rem;
+				border-radius:0.5rem;
 				&.ranking{background-color:#FA3C3C;}
 				&.navigation{background-color:#78D200;}
 				&.measure{background-color: #009AFF;}
-				img{width:100%; margin:0px auto; }
+				img{width:100%; margin:0 auto; }
 			}
 			.label{
-				margin: 10px auto;
+				margin: 0.2rem auto;
 				width: 100%;
-				text-align: center; font-size:0.23em;
+				text-align: center; font-size: 0.22em;
 			}
 		}
 	}
@@ -39,9 +39,9 @@ export default {
     data:function(){
        return {
           items : [
-          	{className:'ranking', label:'热门排行', src: '../../build/image/topic-1.svg', alt:'1'},
-          	{className:'navigation', label:'就医导航', src: '../../build/image/topic-2.svg', alt:'2'},
-          	{className:'measure', label:'健康测量', src: '../../build/image/topic-3.svg', alt:'3'}
+          	{className:'ranking', label:'热门排行', src: 'http://www.liangfangji.com/mockcdn/image/topic-1.svg', alt:'1'},
+          	{className:'navigation', label:'就医导航', src: 'http://www.liangfangji.com/mockcdn/image/topic-2.svg', alt:'2'},
+          	{className:'measure', label:'健康测量', src: 'http://www.liangfangji.com/mockcdn/image/topic-3.svg', alt:'3'}
         ]
        }
     }

@@ -3,7 +3,7 @@
     width:100%; height: auto; background:#fff;
     ul{
       li{
-        padding:0.3rem 0.24rem;border-bottom: 1px #f0eff5 solid;
+        padding:0.3rem 0.24rem;border-bottom: 0.02rem #f0eff5 solid;
         .author{
           height:0.44rem;line-height:0.44rem;font-size:0.28rem;color:#989898;overflow: hidden;margin-bottom: 0.2rem;
           img{float: left;width:auto;height: 100%;margin-right: 0.2rem;}
@@ -25,7 +25,7 @@
     <div class="info-list">
       <ul>
         <li class="info-item" v-for="item in items" >
-            <p class="author"><img src="../../build/image/head.jpg"/> {{item.author}}发表的问题</p>
+            <p class="author"><img src="http://www.liangfangji.com/mockcdn/image/head.jpg"/> {{item.author}}发表的问题</p>
             <p class="question">{{item.question}}</p>
             <p class="answer">{{item.answer}}</p>
             <p class="bottom">
@@ -44,19 +44,19 @@ export default {
        return {
           items : [
           	{
-              author:'马某某', img:"../../build/image/head.jpg",
+              author:'马某某', img:"http://www.liangfangji.com/mockcdn/image/head.jpg",
               question:'这里小儿感冒问题', 
               answer: '这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答，这里是发表的回答这里是发表的回答。',
               source:'我的提问', comment:'113', like:'201'
             },
             {
-              author:'刘某某', img:"../../build/image/head.jpg",
+              author:'刘某某', img:"http://www.liangfangji.com/mockcdn/image/head.jpg",
               question:'这里小儿感冒问题', 
               answer: '这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答，这里是发表的回答这里是发表的回答。',
               source:'某小组', comment:'113', like:'201'
             },
             {
-              author:'雷某某', img:"../../build/image/head.jpg",
+              author:'雷某某', img:"http://www.liangfangji.com/mockcdn/image/head.jpg",
               question:'这里小儿感冒问题', 
               answer: '这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答，这里是发表的回答这里是发表的回答。',
               source:'某话题', comment:'113', like:'201'
