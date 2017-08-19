@@ -39,9 +39,9 @@ export default {
     data:function(){
        return {
           items : [
-          	{className:'ranking', label:'热门排行', src: 'http://www.liangfangji.com/mockcdn/image/topic-1.svg', alt:'1'},
-          	{className:'navigation', label:'就医导航', src: 'http://www.liangfangji.com/mockcdn/image/topic-2.svg', alt:'2'},
-          	{className:'measure', label:'健康测量', src: 'http://www.liangfangji.com/mockcdn/image/topic-3.svg', alt:'3'}
+          	{className:'ranking', label:'圈子', src: 'http://www.liangfangji.com/mockcdn/image/topic-1.svg', alt:'1'},
+          	{className:'navigation', label:'分析', src: 'http://www.liangfangji.com/mockcdn/image/topic-2.svg', alt:'2'},
+          	{className:'measure', label:'工具', src: 'http://www.liangfangji.com/mockcdn/image/topic-3.svg', alt:'3'}
         ]
        }
     }

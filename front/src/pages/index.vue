@@ -14,14 +14,7 @@
     <div  class="main">
         
         <!-- 话题搜索 -->
-         <div class="search">
-             <div class="searchIn">
-                <form method="post" action="#">
-                    <a href="javascript:;" class="searchBtn"></a>
-                    <input type="text" placeholder="搜索你感兴趣的话题" />
-                </form>
-             </div>
-        </div>
+        <c-SearchBar></c-SearchBar>
         
         <!-- 推荐 -->
         <c-Banner></c-Banner>
@@ -42,6 +35,9 @@
 
 <script>
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
+
+import SearchBar from '../components/searchBar.vue'
 import Banner from '../components/banner.vue'
 import TabBar from '../components/tabBar.vue'
 import Section from '../components/section.vue'
@@ -53,10 +49,12 @@ export default {
         return {};
     },
 
-    methods: {
-    },
+    computed:{},
+
+    methods: {},
 
     components:{
+        'c-SearchBar':SearchBar,
         'c-Banner': Banner,
         'c-TabBar' : TabBar,
         'c-Section' : Section,
@@ -65,7 +63,3 @@ export default {
     }
 }
 </script>
-
-
-
- class="main"

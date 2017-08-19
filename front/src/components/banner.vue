@@ -12,13 +12,15 @@
 
 <template>
     <el-carousel indicator-position="inside" height="100px">
-        <el-carousel-item v-for="(item,index) in items" :key="index">
+        <el-carousel-item v-for="(item,index) in features" :key="index">
             <img :src="item.src" :alt="item.alt">
         </el-carousel-item>
     </el-carousel>
 </template>
 
 <script>
+import { mapGetters, mapState, mapActions } from 'vuex'
+
 export default {
     data:function(){
       return {
@@ -28,6 +30,16 @@ export default {
           {src: 'http://www.liangfangji.com/mockcdn/image/banner-3.jpg', alt:'3'}
         ]
       }
+    },
+    computed:{
+      ...mapGetters('portal',['isFeatureLoading', 'features','discovers'])
+    },
+    methods: {
+      ...mapActions('portal', ['getFeatures', 'getDiscovers'])
+    },
+    created (){
+      this.getFeatures()
+      this.getDiscovers()
     }
 }
 </script>
