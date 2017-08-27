@@ -3,9 +3,9 @@
         <c-searchBar></c-searchBar>
         <p class="columnTitle"><span class="fl">推荐小组</span><a class="more fr" href="#">全部</a></p>
         <div class="group">
-            <swiper :options="swiperOption2">
-                <swiper-slide v-for="item in recommend2" :key="item.itemId">
-                    <a :href="item.DesUrl"><img :src="item.imgUrl"/><p class="tit">{{item.itemName}}</p><p class="smalltxt">{{item.desc}}</p></a>
+            <swiper :loadtheme="true" :options="swiperOption2">
+                <swiper-slide v-for="item in recommend2" :key="item.dwItemId">
+                    <a :href="item.sDesUrl"><img :src="item.sImgUrl"/><p class="tit">{{item.sOprTitle}}</p><p class="smalltxt">{{item.sOprDesc}}</p></a>
                 </swiper-slide>
             </swiper>
         </div>
@@ -15,8 +15,8 @@
         <p class="columnTitle"><span class="fl">推荐话题</span><a class="more fr" href="#">全部</a></p>
         <div class="topic">
             <swiper :options="swiperOption3">
-                <swiper-slide v-for="item in recommend3" :key="item.itemId">
-                    <a :href="item.DesUrl"><img :src="item.imgUrl"/><p>{{item.itemName}}</p></a>
+                <swiper-slide v-for="item in recommend3" :key="item.dwItemId">
+                    <a :href="item.sDesUrl"><img :src="item.sImgUrl"/><p>{{item.sOprTitle}}</p></a>
                 </swiper-slide>
             </swiper>
         </div>
@@ -52,6 +52,7 @@
         </div>
         <div class="empty" :class="{none: list.length > 0 || (topicParam.pi == 1 && total == 0)}">查询没有数据</div>
         <p class="paddBtm"></p>
+        <c-QuickQuestion></c-QuickQuestion>
         <c-TabBar></c-TabBar>
     </div>
 </template>
@@ -60,9 +61,11 @@
 import Util from '../vuex/util.js'
 import {mapState, mapActions} from 'vuex'
 import {swiper,swiperSlide} from 'vue-awesome-swiper'
+import 'swiper/dist/css/swiper.css'
 import TabBar from '../components/tabBar.vue'
 import SearchBar from '../components/searchBar.vue'
 import DiscoverItem from '../components/discoverItem.vue'
+import QuickQuestion from '../components/quickQuestion.vue'
 
 export default {
     data(){
@@ -83,11 +86,11 @@ export default {
                 spaceBetween:20
             },
             navs: [
-                [1, '儿科'],
-                [2, '内科'],
-                [3, '外科'],
-                [4, '妇科'],
-                [5, '耳科'],
+                [1, '妇科'],
+                [2, '儿科'],
+                [5, '护理'],
+                [3, '慢病'],
+                [4, '中医'],
                 [6, '眼科'],
                 [7, '鼻科'],
                 [8, '神经科'],
@@ -173,7 +176,8 @@ export default {
        swiperSlide,
        'c-searchBar' : SearchBar,
        'c-TabBar' : TabBar,
-       'c-discoverItem':DiscoverItem 
+       'c-discoverItem':DiscoverItem,
+       'c-QuickQuestion': QuickQuestion
     }
 }
 </script>

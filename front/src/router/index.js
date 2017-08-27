@@ -11,6 +11,6 @@ export default new Router({
         {path: '/index',component: Index},
         {path: '/discover',component: Discover},
         {path: '/search',component: Search},
-        {path: '*', redirect: '/search'}
+        {path: '*', redirect: '/index'}
     ]
 })

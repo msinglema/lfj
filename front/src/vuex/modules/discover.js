@@ -4,16 +4,17 @@ const state = {
     recommend2:[],  //推荐小组
     recommend3:[],  //推荐话题
     recommParam:{
-        BizType : 1,
+        otype : 1,
         Actid : 0,
         ItemType : 0,
-        pi:1,
+        pi:0,
         ps:6
     },
     topicParam:{   //话题参数
-        pi:1,
+        pi:0,
         ps:30,
-        ctype: '0',
+        ctype: 0,
+        btype:0,
         oby:1      
     }
 }
@@ -22,11 +23,11 @@ const actions = {
     getRecommendAction({commit,state,dispatch},biz){
         dispatch('setBizTypeAction',biz)
 
-        Vue.http.get('/bizType',{
-            params : state.recommParam 
+        Vue.http.get('http://www.liangfangji.com/operation/operation',{
+            params : {...state.recommParam, otype:biz} 
         }).then((response) => {
-            response.body = JSON.parse(response.body) 
-            if(response.body.Ret == 0){
+            // response.body = JSON.parse(response.body) 
+            if(response.body.dwRet == 0){
                 commit({
                     type : 'getRecommend',
                     data : response.body,
@@ -42,21 +43,21 @@ const actions = {
 
         dispatch('setLoadingAction',true,{root:true})
 
-        Vue.http.get('/topicList',{
+        Vue.http.get('http://www.liangfangji.com/discover/show',{
             params : state.topicParam 
         }).then((response) => {
 
             dispatch('setLoadingAction',false,{root:true})
-            response.body = JSON.parse(response.body) 
+            // response.body = JSON.parse(response.body) 
 
-            if(response.body.Ret == 0){
+            if(response.body.dwRet == 0){
                 commit({type:'setPi',pi : response.body.dwPi})
                 commit('getSearchList',response.body,{root:true})
             }
 
         }).catch(function(msg) {
             dispatch('setLoadingAction',false,{root:true})
-            console.log('------->net error')
+            console.log('------->net error:', msg)
         })
     },
     changeTopicTypeAction({commit,state,dispatch},ctype){
@@ -87,15 +88,18 @@ const mutations = {
         state.topicParam.pi = payload.pi*1 + 1
     },
     setBizType(state,payload){
-        state.recommParam.BizType = payload.biz
+        state.recommParam.otype = payload.biz
     },
     getRecommend(state,payload){
         state['recommend'+ payload.biz] = payload.data.vData
     },
     resetParam(state,payload){
-        state.topicParam.pi = 1
-        state.topicParam.ctype = '0'
+        state.topicParam.pi = 0
+        state.topicParam.ctype = 0
         state.topicParam.oby = 1
+
+        state.recommParam.pi = 0
+        state.recommParam.otype = 1
     }
 }
 

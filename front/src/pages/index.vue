@@ -24,7 +24,7 @@
         <!-- <el-button type="primary" @click.native="startHacking">Let's do it</el-button> -->
 
         <!--信息列表-->
-        <c-InfoList></c-InfoList>
+        <c-InfoList :items="renderList" :loading="loading"></c-InfoList>
         
         <p class="paddBtm"></p>
         <c-QuickQuestion></c-QuickQuestion>
@@ -35,7 +35,7 @@
 
 <script>
 import Vue from 'vue'
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 import SearchBar from '../components/searchBar.vue'
 import Banner from '../components/banner.vue'
@@ -49,10 +49,39 @@ export default {
         return {};
     },
 
-    computed:{},
+    computed:{
+        ...mapState(['loading','list','renderList','total'])
+    },
 
-    methods: {},
+    methods: {
+        ...mapActions('discover',['getTopicListAction', 'resetParamAction']),
+        ...mapActions(['appendListAction', 'resetAction'])
+    },
+    created(){
+        this.resetParamAction()
+        this.getTopicListAction()
+    },
+    mounted(){
+        window.onscroll = () => {
+            if(this.list.length == 0){
+                return
+            }
 
+            if(document.body.clientHeight - window.innerHeight - window.scrollY <= 10){
+                if(this.renderList.length < this.list.length){
+                    this.appendListAction()
+                }else if(this.renderList.length == this.list.length && this.list.length < this.total){
+                    this.getTopicListAction()
+                }
+            }
+        }
+    },
+    beforeRouteLeave(to, from, next){
+        this.resetParamAction()
+        this.resetAction()
+        window.onscroll = null
+        next()
+    },
     components:{
         'c-SearchBar':SearchBar,
         'c-Banner': Banner,

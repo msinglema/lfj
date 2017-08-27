@@ -1,8 +1,8 @@
 <template>
       <li>
-          <p class="problem">这里小儿感冒问题</p>
-          <p class="answer">这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答这里是发表的回答，这里是发表的回答这里是发表的回答。</p>
-          <p class="bottom"><span>来自某话题</span><span>113评论</span><span>201有用</span></p>
+          <p class="problem"><a :href="item.sUrl">{{item.sTitle}}</a></p>
+          <p class="answer"><a :href="item.sUrl">{{item.sSummary}}</a></p>
+          <p class="bottom"><span>{{author}} {{item.dwContenttype}}</span><span>{{item.dwCommentNum}}评论</span><span>{{item.dwLikeNum}}有用</span></p>
       </li>
 </template>
 
@@ -13,7 +13,10 @@ import {mapState, mapActions} from 'vuex'
 export default {
     props:['item','index'],
     computed:Util.extend(mapState([]),{
-
+      author(){
+        const { item } = this 
+        return item.sAuthor ? `来自 ${item.sAuthor}` : ''
+      }
     }),
     methods:Util.extend(mapActions([]),{
 

@@ -17,8 +17,8 @@
 
 <template>
     <div class="bottomNav">
-    	<a v-for="(item, index) in items" :href="item.path" >
-    	  	{{ item.label }}
+    	<a v-for="(nav, index) in navs" :href="nav.path" >
+    	  	{{ nav.label }}
     	</a>
         <a href="#index">首页</a><a href="#discover">发现</a><a href="#">我的</a>
     </div>
@@ -28,8 +28,18 @@
 export default {
     data:function(){
        return {
-          items : [{label:'首页', path:'#index'}, {label:'发现', path:'#discover'}, {label:'我的', path:'#'}, ]
+          items : [{label:'首页', path:'#index'}, {label:'发现', path:'#discover'}, {label:'我的', path:'#'} ]
        }
+    },
+    computed:{
+      navs: function(){
+      	console.log('this.$route: ', this.$route)
+      	const path = this.$route.path;
+      	// return this.items.map((item)=>{
+
+      	// });
+      	return this.items
+      }
     }
 }
 </script>

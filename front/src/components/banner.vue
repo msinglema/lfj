@@ -13,7 +13,7 @@
 <template>
     <el-carousel indicator-position="inside" height="100px">
         <el-carousel-item v-for="(item,index) in features" :key="index">
-            <img :src="item.src" :alt="item.alt">
+            <img :src="item.sImgUrl" :alt="item.sOprTitle">
         </el-carousel-item>
     </el-carousel>
 </template>
@@ -32,14 +32,13 @@ export default {
       }
     },
     computed:{
-      ...mapGetters('portal',['isFeatureLoading', 'features','discovers'])
+      ...mapGetters('portal',['isFeatureLoading', 'features', 'discovers'])
     },
     methods: {
       ...mapActions('portal', ['getFeatures', 'getDiscovers'])
     },
     created (){
       this.getFeatures()
-      this.getDiscovers()
     }
 }
 </script>
