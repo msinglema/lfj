@@ -38,7 +38,7 @@
 export default {
     data:function(){
       return {
-        open: true
+        open: false
       } 
     },
     methods:{

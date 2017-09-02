@@ -79,6 +79,6 @@ export default {
         'c-TabBar' : TabBar,
         'c-searchBar' : SearchBar,
         'c-searchItem' : SearchItem
-    },
+    }
 }
 </script>
