@@ -254,7 +254,7 @@ body {
 .infoList ul li .problem{font-size:0.3rem;line-height:1.6em;margin-bottom: 0.1rem;font-weight: bold;}
 .infoList ul li .answer{font-size:0.28rem;color:#333;line-height:1.6em;}
 .infoList ul .bottom, .infoList ul .flow{font-size:0.24rem;color:#989898;margin-top:0.15rem;overflow: hidden;}
-.infoList ul .flow span{font-size: 0.12rem;color:#A9A9A9;}
+.infoList ul .flow span{font-size: 0.20rem;color:#A9A9A9;}
 .infoList ul .bottom span:nth-child(1){float: left;}
 .infoList ul .bottom span:nth-child(2){float: right; margin-left: 0.4rem;}
 .infoList ul .bottom span:nth-child(3){float: right;}
