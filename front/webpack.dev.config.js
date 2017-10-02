@@ -38,10 +38,16 @@ module.exports = {
             {
                 test: /\.css$/,
                 loader:'style-loader!css-loader'
-            }, {
+            }, 
+            {
+                  test: /\.less$/,
+                  loader: 'style-loader!css-loader!less-loader'
+            },
+            {
                 test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
                 loader: 'url-loader?limit=10000'
-            }, {
+            },
+            {
                 test: /\.html$/,
                 loader: 'html-loader'
             }

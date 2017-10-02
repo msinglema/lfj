@@ -28,7 +28,7 @@
 export default {
     data:function(){
        return {
-          items : [{label:'首页', path:'#index'}, {label:'发现', path:'#discover'}, {label:'我的', path:'#'} ]
+          items : [{label:'首页', path:'#index'}, {label:'发现', path:'#discover'}, {label:'我的', path:'#profile'} ]
        }
     },
     computed:{

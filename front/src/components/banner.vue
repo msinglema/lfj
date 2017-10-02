@@ -12,7 +12,9 @@
 <template>
     <swiper :loadtheme="true" :options="swiperOption">
         <swiper-slide v-for="(item, index) in features" :key="index">
-            <div class="image-item" :style="{backgroundImage:'url(' + item.sImgUrl + ')'}"></div>
+              <a :href="item.sDesUrl">
+                <div class="image-item" :style="{backgroundImage:'url(' + item.sImgUrl + ')'}"> </div>
+              </a>
         </swiper-slide>
          <div class="swiper-pagination" slot="pagination"></div>  
     </swiper>
