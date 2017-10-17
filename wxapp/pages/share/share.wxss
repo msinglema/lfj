@@ -1,0 +1,20 @@
+@import "../common/libs/weui.wxss";
+
+.picker{
+  padding: 19rpx 26rpx;
+  background-color: #FFFFFF;
+}
+
+textarea {
+    width: 700rpx;
+    min-height: 200rpx;
+    padding: 25rpx 0;
+}
+
+.weui-cell_uploader::before{
+	border:none;
+}
+
+.page__bd_spacing{
+	padding:40rpx 20rpx;
+}

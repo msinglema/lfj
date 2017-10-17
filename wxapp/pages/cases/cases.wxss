@@ -1,0 +1,79 @@
+.cases_content{
+	margin-top: 40rpx;
+	padding:20rpx 40rpx;
+}
+
+.bigImg{
+    width: 100%;
+    height: 35%;
+    background: url("http://www.liangfangji.com/static/image/opr/opr1/manbing2.jpg");
+    background-size: cover;
+    position:relative;
+}
+
+.userAva{
+    position: absolute;
+    right:50rpx;
+    bottom:0;
+}
+.userAva image{
+    position:relative;
+    width: 140rpx;
+    height: 140rpx;
+    right: -15rpx;
+    bottom:-50rpx;
+}
+.userAva text{
+    color: white;
+}
+.moments_content{
+    margin-top: 90rpx;
+    font-size: 30rpx;
+}
+.avatar-wrapper{
+	font-size: 30rpx;
+	display: flex;
+	justify-content:space-between;
+}
+.otherName, .timeline{
+    display:flex;
+	align-items:center;
+}
+.otherName .otherAva{
+    width: 90rpx;
+    height: 90rpx;
+    margin-right: 20rpx;
+	border-radius: 45rpx
+}
+.borderBot{
+    border-bottom: 1rpx solid #ccc
+}
+.nickTime{
+    margin: 20rpx 0;
+    position:relative;
+}
+.nickIcon{
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 18px;
+}
+.marginBot{
+    margin-bottom: 40rpx;
+}
+
+/** 修改默认的navigator点击态 **/
+.navigator-hover {
+    color:blue;
+}
+/** 自定义其他点击态样式类 **/
+.other-navigator-hover {
+    color:red;
+}
+
+.case-desc{
+	display:flex;
+	justify-content:space-between;
+	margin-top: 20rpx;
+	font-size: 30rpx;
+}
