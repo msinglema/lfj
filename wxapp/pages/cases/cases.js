@@ -4,32 +4,9 @@ const app = getApp()
 
 Page({
   data:{
-    moments:[
-		// {
-		// 	name: 'bryan', avaImg: '../../image/head.jpg', text: '豪车', time:'2017-10-08', 
-		// 	img:[
-		// 		{imgUrl:'../../image/image_1.jpeg'}, 
-		// 		{imgUrl:'../../image/image_2.jpeg'},
-		// 		{imgUrl:'../../image/image_3.jpeg'}
-		// 	]
-		// },
-		// {
-		// 	name: 'think', avaImg: '../../image/head.jpg', text: '宝马', time:'2017-10-08', 
-		// 	img:[
-		// 		{imgUrl:'../../image/image_1.jpeg'}, 
-		// 		{imgUrl:'../../image/image_2.jpeg'},
-		// 		{imgUrl:'../../image/image_3.jpeg'}
-		// 	]
-		// },
-		// {
-		// 	name: 'thunder', avaImg: '../../image/head.jpg', text: '宝马', time:'2017-10-08', 
-		// 	img:[
-		// 		{imgUrl:'../../image/image_1.jpeg'}, 
-		// 		{imgUrl:'../../image/image_2.jpeg'},
-		// 		{imgUrl:'../../image/image_3.jpeg'}
-		// 	]
-		// },
-    ]
+    pi:1,
+    ps:10,
+    moments:[]
   },
   formatTime:function(time){
   	console.log(util)
@@ -44,11 +21,14 @@ Page({
     this.setData({
         userInfo:app.globalData.userInfo
     })
-
-  	const data = {pi:1, ps:10}
+    this.getData()
+  },
+  getData: function(){
+    const {data:{pi, ps, moments}} = this 
+    const data = {pi, ps}
     // 页面渲染完成
     wx.request({
-      url: 'http://www.liangfangji.com/archivesjson/manager', //仅为示例，并非真实的接口地址
+      url: 'https://www.liangfangji.com/archivesjson/manager',
       data: data,
       dataType:'json',
       header: {
@@ -56,24 +36,29 @@ Page({
       },
       success: (res) => {
         console.log('res.data:', res.data)
+        const { data } = this
         const { data:{archives} } = res.data
-        this.setData({moments:archives})
+        this.setData({moments:moments.concat(archives)})
       },
       fail: (error) => {
        console.log('error:', error)
       }
-    })
+    }) 
+  },
+  loadmore: function(e){
+    console.log('load more')
+    const { data:{pi} } = this
+    this.setData({pi:pi+1})
+    this.getData()
+  },
+  imagePreview:function(e){
+    const { currentTarget:target } = e
+    const { dataset:{src, list} } = target
 
-  },
-  onReady:function(){
-  },
-  onShow:function(){
-    // 页面显示
-  },
-  onHide:function(){
-    // 页面隐藏
-  },
-  onUnload:function(){
-    // 页面关闭
+    const urls = list.map((item)=>`https://${item.img_id}`)
+    wx.previewImage({
+        current: `https://${src}`, // 当前显示图片的http链接
+        urls: urls // 需要预览的图片http链接列表
+    })
   }
 })

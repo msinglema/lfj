@@ -4,12 +4,11 @@ const app = getApp()
 
 Page({
   data: {
-    motto: '欢迎来到良方集',
+    motto: '良方集',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-  //事件处理函数
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({

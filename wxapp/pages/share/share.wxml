@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="form-container">
   <form bindsubmit="formSubmit" bindreset="formReset">
-    
+
     <view class="weui-section">
       <view class="weui-cells">
         <view class="weui-cell weui-cell_input">

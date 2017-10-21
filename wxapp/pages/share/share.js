@@ -4,7 +4,7 @@ const app = getApp()
 
 Page({
     data: {
-        index: 2,
+        index: 0,
         array: ['儿科', '妇科', '骨科', '皮肤科'],
         files:[],
         img_list:[],
@@ -20,6 +20,7 @@ Page({
          success: (res)=> {
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
             console.log(data.files.length);
+            const new_files = res.tempFilePaths
             if(data.files.length === data.count){
                 wx.showModal({
                     content: '图片上限为' + data.count + '张',
@@ -32,28 +33,38 @@ Page({
                 });
                 return;
             }
-            wx.uploadFile({
-                  url: 'http://www.liangfangji.com/archivesjson/add_img',
-                  filePath: res.tempFilePaths[0],
+
+            const upLoadImage = (image) => {
+              return new Promise((resolve, reject)=>{
+
+                wx.uploadFile({
+                  url: 'https://www.liangfangji.com/archivesjson/add_img',
+                  filePath: image,
                   name: 'image',
                   formData:{
-                    'user': 'test'
+                    'user': 'bryan'
                   },
                   success: (res)=>{
                     console.log('res: ', res)
-                    this.setData({
-                      img_list: [JSON.parse(res.data)]
-                    })
-                    //do something
+                    resolve(JSON.parse(res.data))
                   },
                   fail: (err)=>{
                     console.log('err: ', err)
+                    reject(err)
                   }
                 })
 
-            this.setData({
-                 files: data.files.concat(res.tempFilePaths)
-            });
+              })
+            }
+
+            Promise.all( new_files.map(file=>upLoadImage(file)) )
+              .then( list=>{
+                console.log('promise all list: ', list)
+                this.setData({
+                  files: data.files.concat(new_files),
+                  img_list: data.img_list.concat(list)
+                })
+              })
          }
      })
     },
@@ -97,20 +108,22 @@ Page({
     formSubmit: function(e) {  
 
        const { value:formData } = e.detail
-       const { data:{img_list} } = this.data
+       const { data:{img_list} } = this
        formData.img_list = img_list
        console.log('formData: ', formData)
        wx.request({
-         url: 'http://www.liangfangji.com/archivesjson/add', //仅为示例，并非真实的接口地址
+         url: 'https://www.liangfangji.com/archivesjson/add', //仅为示例，并非真实的接口地址
          data: formData,
          method:'POST',
          dataType:'json',
          header: {
-            // 'content-type': 'application/x-www-form-urlencoded',
              'content-type': 'application/json' // 默认值
          },
          success: function(res) {
            console.log('res.data:', res.data)
+           wx.navigateTo({
+            url: 'share_success'
+          })
          },
          fail: function(error) {
           console.log('error:', error)
