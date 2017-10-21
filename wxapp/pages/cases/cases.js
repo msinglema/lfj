@@ -6,6 +6,7 @@ Page({
   data:{
     pi:1,
     ps:10,
+    totalpage:0,
     moments:[]
   },
   formatTime:function(time){
@@ -37,8 +38,8 @@ Page({
       success: (res) => {
         console.log('res.data:', res.data)
         const { data } = this
-        const { data:{archives} } = res.data
-        this.setData({moments:moments.concat(archives)})
+        const { data:{archives, totalpage} } = res.data
+        this.setData({moments:moments.concat(archives), totalpage})
       },
       fail: (error) => {
        console.log('error:', error)
@@ -47,9 +48,11 @@ Page({
   },
   loadmore: function(e){
     console.log('load more')
-    const { data:{pi} } = this
-    this.setData({pi:pi+1})
-    this.getData()
+    const { data:{pi, totalpage} } = this
+    if( pi < totalpage ){
+      this.setData({pi:pi+1})
+      this.getData()
+    }
   },
   imagePreview:function(e){
     const { currentTarget:target } = e
