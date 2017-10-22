@@ -1,4 +1,5 @@
-//index.js
+import util from '../../utils/util.js'
+
 //获取应用实例
 const app = getApp()
 
@@ -38,7 +39,7 @@ Page({
               return new Promise((resolve, reject)=>{
 
                 wx.uploadFile({
-                  url: 'https://www.liangfangji.com/archivesjson/add_img',
+                  url: util.getAPIPath('ADD_IMAGE'),
                   filePath: image,
                   name: 'image',
                   formData:{
@@ -112,7 +113,7 @@ Page({
        formData.img_list = img_list
        console.log('formData: ', formData)
        wx.request({
-         url: 'https://www.liangfangji.com/archivesjson/add', //仅为示例，并非真实的接口地址
+         url: util.getAPIPath('ADD_ARCHIVE'), 
          data: formData,
          method:'POST',
          dataType:'json',

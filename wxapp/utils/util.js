@@ -14,6 +14,20 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const baseUrl = 'https://www.liangfangji.com'
+const APIConf = {
+  //archives
+  'GET_ARCHIVES':`${baseUrl}/archivesjson/manager`,
+  'ADD_ARCHIVE':`${baseUrl}/archivesjson/add`,
+  'ADD_IMAGE':`${baseUrl}/archivesjson/add_img`
+}
+
+const getAPIPath =  name => {
+  const lfj_sess = wx.getStorageSync('lfj_sess')
+  const url = `${APIConf[name]}?lfj_sess=${lfj_sess}`
+  return url
+}
 module.exports = {
-  formatTime: formatTime
+  formatTime,
+  getAPIPath
 }

@@ -10,8 +10,6 @@ Page({
     moments:[]
   },
   formatTime:function(time){
-  	console.log(util)
-  	console.log(time)
   	return util.formatTime(time); 
   },
   onLoad:function(options){
@@ -29,7 +27,7 @@ Page({
     const data = {pi, ps}
     // 页面渲染完成
     wx.request({
-      url: 'https://www.liangfangji.com/archivesjson/manager',
+      url: util.getAPIPath('GET_ARCHIVES'),
       data: data,
       dataType:'json',
       header: {
