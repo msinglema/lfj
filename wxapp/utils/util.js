@@ -22,6 +22,17 @@ const APIConf = {
   'ADD_IMAGE':`${baseUrl}/archivesjson/add_img`
 }
 
+const getHeader = () => {
+  let header
+  const session_id = wx.getStorageSync('sid') //本地取存储的sessionID  
+      if (session_id != "" && session_id != null) {  
+          header = { 'content-type': 'application/json', 'Cookie': 'ci_session=' + session_id }  
+      } else {  
+          header = { 'content-type': 'application/json' }  
+      } 
+      return header
+}
+
 const getAPIPath =  name => {
   const lfj_sess = wx.getStorageSync('lfj_sess')
   const url = `${APIConf[name]}?lfj_sess=${lfj_sess}`
@@ -29,5 +40,6 @@ const getAPIPath =  name => {
 }
 module.exports = {
   formatTime,
-  getAPIPath
+  getAPIPath,
+  getHeader
 }

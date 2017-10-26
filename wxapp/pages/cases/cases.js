@@ -25,14 +25,13 @@ Page({
   getData: function(){
     const {data:{pi, ps, moments}} = this 
     const data = {pi, ps}
+    console.log(util.getHeader())
     // 页面渲染完成
     wx.request({
       url: util.getAPIPath('GET_ARCHIVES'),
       data: data,
       dataType:'json',
-      header: {
-          'content-type': 'application/json' // 默认值
-      },
+      header: util.getHeader(),
       success: (res) => {
         console.log('res.data:', res.data)
         const { data } = this

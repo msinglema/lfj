@@ -32,10 +32,11 @@ App({
             },
             success: result => {
               console.log('result: ', result)
-              const {data:{ret, lfj_sess, message}} = result
+              const {data:{ret, lfj_sess, sid, message}} = result
               if( 0 === ret){
                 try {
                     wx.setStorageSync('lfj_sess', lfj_sess)
+                    wx.setStorageSync('sid', sid)
                     this._getUserInfo()
                 } catch (e) {
                   console.warn('set storag err: ', e)

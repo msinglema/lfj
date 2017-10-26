@@ -42,6 +42,7 @@ Page({
                   url: util.getAPIPath('ADD_IMAGE'),
                   filePath: image,
                   name: 'image',
+                  header: util.getHeader(),
                   formData:{
                     'user': 'bryan'
                   },
@@ -117,9 +118,7 @@ Page({
          data: formData,
          method:'POST',
          dataType:'json',
-         header: {
-             'content-type': 'application/json' // 默认值
-         },
+         header: util.getHeader(),
          success: function(res) {
            console.log('res.data:', res.data)
            wx.navigateTo({
