@@ -6,7 +6,7 @@ const app = getApp()
 Page({
     data: {
         index: 0,
-        array: ['儿科', '妇科', '骨科', '皮肤科'],
+        array: ['其他','儿科', '妇科', '慢病','骨科', '皮肤科','护理','口腔'],
         files:[],
         img_list:[],
         desc:'',
