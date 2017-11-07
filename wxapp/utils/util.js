@@ -24,12 +24,12 @@ const APIConf = {
 
 const getHeader = () => {
   let header
-  const session_id = wx.getStorageSync('sid') //本地取存储的sessionID  
-      if (session_id != "" && session_id != null) {  
-          header = { 'content-type': 'application/json', 'Cookie': 'ci_session=' + session_id }  
-      } else {  
-          header = { 'content-type': 'application/json' }  
-      } 
+  const session_id = wx.getStorageSync('sid') //本地取存储的sessionID
+      if (session_id != "" && session_id != null) {
+          header = { 'content-type': 'application/json', 'Cookie': 'ci_session=' + session_id }
+      } else {
+          header = { 'content-type': 'application/json' }
+      }
       return header
 }
 
@@ -38,8 +38,44 @@ const getAPIPath =  name => {
   const url = `${APIConf[name]}?lfj_sess=${lfj_sess}`
   return url
 }
+
+const handleLogin = () => {
+  wx.login({
+    success: res => {
+      // 发送 res.code 到后台换取 openId, sessionKey, unionId
+      if (res.code) {
+        //发起网络请求
+        wx.request({
+          url: 'https://www.liangfangji.com/usrwx/onlogin',
+          data: {
+            code: res.code
+          },
+          success: result => {
+            console.log('result: ', result)
+            const {data:{ret, lfj_sess, sid, message}} = result
+            if( 0 === ret){
+              try {
+                  wx.setStorageSync('lfj_sess', lfj_sess)
+                  wx.setStorageSync('sid', sid)
+                  wx.switchTab({url: '/pages/index/index'})
+              } catch (e) {
+                console.warn('set storag err: ', e)
+              }
+            } else {
+              console.warn('onlogin err: ', message)
+            }
+          }
+        })
+      } else {
+        console.log('获取用户登录态失败！' + res.errMsg)
+      }
+    }
+  })
+}
+
 module.exports = {
   formatTime,
   getAPIPath,
-  getHeader
+  getHeader,
+  handleLogin
 }

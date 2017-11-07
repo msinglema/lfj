@@ -10,7 +10,7 @@ Page({
     moments:[]
   },
   formatTime:function(time){
-  	return util.formatTime(time); 
+  	return util.formatTime(time);
   },
   onLoad:function(options){
   	const time = util.formatTime(new Date())
@@ -23,7 +23,7 @@ Page({
     this.getData()
   },
   getData: function(){
-    const {data:{pi, ps, moments}} = this 
+    const {data:{pi, ps, moments}} = this
     const data = {pi, ps}
     console.log(util.getHeader())
     // 页面渲染完成
@@ -34,14 +34,19 @@ Page({
       header: util.getHeader(),
       success: (res) => {
         console.log('res.data:', res.data)
-        const { data } = this
-        const { data:{archives, totalpage} } = res.data
-        this.setData({moments:moments.concat(archives), totalpage})
+        const { data:result } = res
+        // not login
+        if( -1 === result.ret ){
+          util.handleLogin()
+        } else {
+          const { data:{archives, totalpage} } = result
+          this.setData({moments:moments.concat(archives), totalpage})
+        }
       },
       fail: (error) => {
        console.log('error:', error)
       }
-    }) 
+    })
   },
   loadmore: function(e){
     console.log('load more')

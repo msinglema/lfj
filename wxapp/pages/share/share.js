@@ -43,12 +43,15 @@ Page({
                   filePath: image,
                   name: 'image',
                   header: util.getHeader(),
-                  formData:{
-                    'user': 'bryan'
-                  },
                   success: (res)=>{
                     console.log('res: ', res)
-                    resolve(JSON.parse(res.data))
+                    const result = JSON.parse(res.data)
+                    // not login
+                    if( -1 === result.ret ){
+                      util.handleLogin()
+                    } else {
+                      resolve(result)
+                    }
                   },
                   fail: (err)=>{
                     console.log('err: ', err)
@@ -107,30 +110,34 @@ Page({
     bindTextAreaBlur: function(e){
       console.log('textarea 失去焦点，携带值为', e.detail.value)
     },
-    formSubmit: function(e) {  
+    formSubmit: function(e) {
 
        const { value:formData } = e.detail
        const { data:{img_list} } = this
        formData.img_list = img_list
        console.log('formData: ', formData)
        wx.request({
-         url: util.getAPIPath('ADD_ARCHIVE'), 
+         url: util.getAPIPath('ADD_ARCHIVE'),
          data: formData,
          method:'POST',
          dataType:'json',
          header: util.getHeader(),
          success: function(res) {
            console.log('res.data:', res.data)
-           wx.navigateTo({
-            url: 'share_success'
-          })
+           const { data:result } = res
+           // not login
+           if( -1 === result.ret ){
+              util.handleLogin()
+           } else {
+              wx.navigateTo({url: 'share_success'})
+           }
          },
          fail: function(error) {
           console.log('error:', error)
          }
        })
 
-     }, 
+     },
     onLoad: function () {
 
     }
