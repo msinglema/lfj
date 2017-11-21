@@ -8,15 +8,19 @@
         <text class="nickname">{{userInfo.nickName}}</text>
       </view>
   </view>
-
+  
   <view class="section">
     <view class="weui-cells weui-cells_after-title">
         <navigator url="/pages/cases/cases" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
             <view class="weui-cell__bd">个人档案</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>
-        <navigator url="/pages/share/share" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-            <view class="weui-cell__bd">添加档案</view>
+        <navigator url="/pages/share/share?scene=share" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">分享</view>
+            <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+        </navigator>
+        <navigator url="/pages/share/share?scene=quiz" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+            <view class="weui-cell__bd">提问</view>
             <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>
     </view>

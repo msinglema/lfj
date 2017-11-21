@@ -1,9 +1,19 @@
 import util from '../../utils/util.js'
 
+const { scene_map, upLoadImage, requestPost } = util
+
 //获取应用实例
 const app = getApp()
 
 Page({
+    onLoad: function (opts) {
+      console.log('opts: ', opts)
+      const { scene } = opts
+      const scene_info = scene_map[scene]
+      const { title, textarea_ph } = scene_info
+      this.setData({scene, textarea_ph})
+      wx.setNavigationBarTitle({ title })
+    },
     data: {
         index: 0,
         array: ['其他','儿科', '妇科', '慢病','骨科', '皮肤科','护理','口腔'],
@@ -35,34 +45,7 @@ Page({
                 return;
             }
 
-            const upLoadImage = (image) => {
-              return new Promise((resolve, reject)=>{
-
-                wx.uploadFile({
-                  url: util.getAPIPath('ADD_IMAGE'),
-                  filePath: image,
-                  name: 'image',
-                  header: util.getHeader(),
-                  success: (res)=>{
-                    console.log('res: ', res)
-                    const result = JSON.parse(res.data)
-                    // not login
-                    if( -1 === result.ret ){
-                      util.handleLogin()
-                    } else {
-                      resolve(result)
-                    }
-                  },
-                  fail: (err)=>{
-                    console.log('err: ', err)
-                    reject(err)
-                  }
-                })
-
-              })
-            }
-
-            Promise.all( new_files.map(file=>upLoadImage(file)) )
+            Promise.all( new_files.map( (file) => upLoadImage(file) ) )
               .then( list=>{
                 console.log('promise all list: ', list)
                 this.setData({
@@ -113,32 +96,46 @@ Page({
     formSubmit: function(e) {
 
        const { value:formData } = e.detail
-       const { data:{img_list} } = this
+       const { data:{img_list, scene} } = this
        formData.img_list = img_list
        console.log('formData: ', formData)
-       wx.request({
-         url: util.getAPIPath('ADD_ARCHIVE'),
-         data: formData,
-         method:'POST',
-         dataType:'json',
-         header: util.getHeader(),
-         success: function(res) {
-           console.log('res.data:', res.data)
-           const { data:result } = res
-           // not login
-           if( -1 === result.ret ){
-              util.handleLogin()
-           } else {
-              wx.navigateTo({url: 'share_success'})
-           }
-         },
-         fail: function(error) {
-          console.log('error:', error)
-         }
-       })
 
-     },
-    onLoad: function () {
+       let path
+       if( 'archive' === scene ){
+          path = 'ADD_ARCHIVE'
+       } else {
+          path = 'ADD_PRESCRIPTION'
+          formData.biztypeid = 'share' === scene ? 1 : 2 //分享：1，问答：2
+       }
 
-    }
+       requestPost({path, data:formData})
+        .then((data)=>{
+            console.log('form submit data: ', data)
+            wx.navigateTo({url: 'share_success'})
+        }, (error)=>{
+          console.log('error: ', error)
+        })
+
+       // wx.request({
+       //   url,
+       //   data: formData,
+       //   method:'POST',
+       //   dataType:'json',
+       //   header: util.getHeader(),
+       //   success: function(res) {
+       //     console.log('res.data:', res.data)
+       //     const { data:result } = res
+       //     // not login
+       //     if( -1 === result.ret ){
+       //        util.handleLogin()
+       //     } else {
+       //        wx.navigateTo({url: 'share_success'})
+       //     }
+       //   },
+       //   fail: function(error) {
+       //    console.log('error:', error)
+       //   }
+       // })
+
+     }
 })

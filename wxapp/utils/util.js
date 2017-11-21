@@ -19,7 +19,10 @@ const APIConf = {
   //archives
   'GET_ARCHIVES':`${baseUrl}/archivesjson/manager`,
   'ADD_ARCHIVE':`${baseUrl}/archivesjson/add`,
-  'ADD_IMAGE':`${baseUrl}/archivesjson/add_img`
+  'ADD_IMAGE':`${baseUrl}/archivesjson/add_img`,
+
+  'GET_PRESCRIPTION':`${baseUrl}/prescriptionjson/manager`,
+  'ADD_PRESCRIPTION':`${baseUrl}/prescriptionjson/add`
 }
 
 const getHeader = () => {
@@ -73,9 +76,71 @@ const handleLogin = () => {
   })
 }
 
+const upLoadImage = (image) => {
+  return new Promise((resolve, reject)=>{
+
+    wx.uploadFile({
+      url: getAPIPath('ADD_IMAGE'),
+      filePath: image,
+      name: 'image',
+      header: getHeader(),
+      success: (res)=>{
+        console.log('res: ', res)
+        const result = JSON.parse(res.data)
+        // not login
+        if( -1 === result.ret ){
+          handleLogin()
+        } else {
+          resolve(result)
+        }
+      },
+      fail: (err)=>{
+        console.log('err: ', err)
+        reject(err)
+      }
+    })
+
+  })
+}
+
+const requestPost = ({path, data}) => {
+  return new Promise((resolve, reject)=>{
+    const url = getAPIPath(path)
+    console.log('url: ', url)
+    wx.request({
+      url, 
+      data,
+      method:'POST',
+      dataType:'json',
+      header: getHeader(),
+      success: function(res) {
+        const { data:result } = res
+        if( -1 === result.ret ){
+          handleLogin()
+        } else {
+          resolve(result)
+        }
+      },
+      fail: function(err) {
+       reject(err)
+      }
+    })
+
+  })
+}
+
+const scene_map = {
+  'archive': { title:'提交档案', textarea_ph: '请写下你的档案简介' },
+  'share':{ title:'分享', textarea_ph: '请写下你的分享' },
+  'quiz':{ title :'提问', textarea_ph: '请写下你的问题' }
+}
+
 module.exports = {
   formatTime,
   getAPIPath,
   getHeader,
-  handleLogin
+  handleLogin,
+  upLoadImage,
+  scene_map,
+  requestPost
 }

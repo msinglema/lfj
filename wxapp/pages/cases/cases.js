@@ -1,13 +1,14 @@
-import util from '../../utils/util.js'
-
 const app = getApp()
+
+import util from '../../utils/util.js'
+const { requestPost } = util
 
 Page({
   data:{
     pi:1,
     ps:10,
     totalpage:0,
-    moments:[]
+    cases:[]
   },
   formatTime:function(time){
   	return util.formatTime(time);
@@ -23,35 +24,21 @@ Page({
     this.getData()
   },
   getData: function(){
-    const {data:{pi, ps, moments}} = this
+    const {data:{pi, ps, cases}} = this
     const data = {pi, ps}
-    console.log(util.getHeader())
-    // 页面渲染完成
-    wx.request({
-      url: util.getAPIPath('GET_ARCHIVES'),
-      data: data,
-      dataType:'json',
-      header: util.getHeader(),
-      success: (res) => {
-        console.log('res.data:', res.data)
-        const { data:result } = res
-        // not login
-        if( -1 === result.ret ){
-          util.handleLogin()
-        } else {
+
+    requestPost({path:'GET_ARCHIVES', data})
+        .then((result)=>{
           const { data:{archives, totalpage} } = result
-          this.setData({moments:moments.concat(archives), totalpage})
-        }
-      },
-      fail: (error) => {
-       console.log('error:', error)
-      }
-    })
+          this.setData({cases:cases.concat(archives), totalpage})
+        }, (error)=>{
+          console.log('error: ', error)
+        })
   },
   loadmore: function(e){
-    console.log('load more')
     const { data:{pi, totalpage} } = this
     if( pi < totalpage ){
+      console.log('load more')
       this.setData({pi:pi+1})
       this.getData()
     }

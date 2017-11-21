@@ -16,6 +16,6 @@
   color: #aaa;
 }
 
-.usermotto {
-  margin-top: 200px;
+.weui-navbar__slider{
+	width:100%;
 }

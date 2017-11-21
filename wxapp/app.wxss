@@ -1,4 +1,5 @@
 @import "./common/libs/weui.wxss";
+@import "./pages/templates/templates.wxss";
 
 /**app.wxss**/
 page{

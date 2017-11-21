@@ -1,5 +1,7 @@
+<import src="../templates/cases.wxml"/>
+
 <!--index.wxml-->
-<view class="container">
+<view class="">
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
@@ -7,7 +9,22 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+
+  <view class="weui-tab">
+      <view class="weui-navbar">
+          <block wx:for="{{tabs}}" wx:key="*this">
+              <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                  <view class="weui-navbar__title">{{item}}</view>
+              </view>
+          </block>
+          <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <view class="weui-tab__panel">
+          <view class="weui-tab__content" hidden="{{activeIndex != 0}}"> </view>
+          <view class="weui-tab__content" hidden="{{activeIndex != 1}}"></view>
+      </view>
   </view>
+  
+  <template is="cases" data="{{cases, userInfo}}"></template>
+  
 </view>

@@ -1,10 +1,21 @@
-//index.js
 //获取应用实例
 const app = getApp()
 
+import util from '../../utils/util.js'
+const { requestPost } = util
 Page({
   data: {
-    motto: '欢迎来到良方集',
+
+    pi:1,
+    ps:10,
+    totalpage:0,
+    cases:[],
+
+    tabs: ["分享", "问答"],
+    activeIndex: 0,
+    sliderOffset: 0,
+    sliderLeft: 0,
+
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -37,7 +48,45 @@ Page({
         }
       })
     }
+
+    var that = this;
+    wx.getSystemInfo({
+        success: function(res) {
+            that.setData({
+                sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
+                sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+            });
+        }
+    });
+
+    this.getData(1)
   },
+
+  // temp
+  getData: function(biztypeid){
+    const {data:{pi, ps, cases}} = this
+    const data = { pi, ps, biztypeid}
+
+    requestPost({path:'GET_PRESCRIPTION', data})
+        .then((result)=>{
+          const { data:{items, totalpage} } = result
+          this.setData({cases:cases.concat(items), totalpage})
+        }, (error)=>{
+          console.log('error: ', error)
+        })
+  },
+
+  tabClick: function (e) {
+    const id = parseInt(e.currentTarget.id)
+    console.log('id: ', id)
+    this.setData({
+        sliderOffset: e.currentTarget.offsetLeft,
+        activeIndex: id,
+        cases:[]
+    })
+    this.getData(id+1)
+  },
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
