@@ -1,7 +1,7 @@
 const app = getApp()
 
 import util from '../../utils/util.js'
-const { requestPost } = util
+const { request } = util
 
 Page({
   data:{
@@ -27,7 +27,7 @@ Page({
     const {data:{pi, ps, cases}} = this
     const data = {pi, ps}
 
-    requestPost({path:'GET_ARCHIVES', data})
+    request({path:'GET_ARCHIVES', data})
         .then((result)=>{
           const { data:{archives, totalpage} } = result
           this.setData({cases:cases.concat(archives), totalpage})

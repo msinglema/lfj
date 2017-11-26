@@ -1,6 +1,6 @@
 import util from '../../utils/util.js'
 
-const { scene_map, upLoadImage, requestPost } = util
+const { scene_map, upLoadImage, request } = util
 
 //获取应用实例
 const app = getApp()
@@ -108,7 +108,7 @@ Page({
           formData.biztypeid = 'share' === scene ? 1 : 2 //分享：1，问答：2
        }
 
-       requestPost({path, data:formData})
+       request({path, data:formData, method:'POST'})
         .then((data)=>{
             console.log('form submit data: ', data)
             wx.navigateTo({url: 'share_success'})

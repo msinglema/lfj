@@ -103,14 +103,14 @@ const upLoadImage = (image) => {
   })
 }
 
-const requestPost = ({path, data}) => {
+const request = ({path, data, method='GET'}) => {
   return new Promise((resolve, reject)=>{
     const url = getAPIPath(path)
     console.log('url: ', url)
     wx.request({
       url, 
       data,
-      method:'POST',
+      method,
       dataType:'json',
       header: getHeader(),
       success: function(res) {
@@ -125,7 +125,6 @@ const requestPost = ({path, data}) => {
        reject(err)
       }
     })
-
   })
 }
 
@@ -142,5 +141,5 @@ module.exports = {
   handleLogin,
   upLoadImage,
   scene_map,
-  requestPost
+  request
 }

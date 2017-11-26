@@ -2,7 +2,9 @@
 const app = getApp()
 
 import util from '../../utils/util.js'
-const { requestPost } = util
+const { request } = util
+const sliderWidth = 188; // 需要设置slider的宽度，用于计算中间位置
+
 Page({
   data: {
 
@@ -53,7 +55,7 @@ Page({
     wx.getSystemInfo({
         success: function(res) {
             that.setData({
-                sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
+                sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth),
                 sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
             });
         }
@@ -62,12 +64,34 @@ Page({
     this.getData(1)
   },
 
+  showInput: function () {
+      this.setData({
+          inputShowed: true
+      });
+  },
+  hideInput: function () {
+      this.setData({
+          inputVal: "",
+          inputShowed: false
+      });
+  },
+  clearInput: function () {
+      this.setData({
+          inputVal: ""
+      });
+  },
+  inputTyping: function (e) {
+      this.setData({
+          inputVal: e.detail.value
+      });
+  },
+
   // temp
   getData: function(biztypeid){
     const {data:{pi, ps, cases}} = this
-    const data = { pi, ps, biztypeid}
+    const data = { pi, ps, biz:biztypeid}
 
-    requestPost({path:'GET_PRESCRIPTION', data})
+    request({path:'GET_PRESCRIPTION', data})
         .then((result)=>{
           const { data:{items, totalpage} } = result
           this.setData({cases:cases.concat(items), totalpage})
