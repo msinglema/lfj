@@ -43,7 +43,7 @@
       </navigator>
   </view>
 
-  <view class="weui-tab">
+ <!--  <view class="weui-tab">
       <view class="weui-navbar">
           <block wx:for="{{tabs}}" wx:key="*this">
               <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
@@ -56,8 +56,8 @@
           <view class="weui-tab__content" hidden="{{activeIndex != 0}}"> </view>
           <view class="weui-tab__content" hidden="{{activeIndex != 1}}"></view>
       </view>
-  </view>
+  </view> -->
   
-  <template is="cases" data="{{cases, userInfo}}"></template>
+  <template is="cases-simple" data="{{cases, userInfo}}"></template>
   
 </view>

@@ -89,7 +89,7 @@ Page({
   // temp
   getData: function(biztypeid){
     const {data:{pi, ps, cases}} = this
-    const data = { pi, ps, biz:biztypeid}
+    const data = { pi, ps, show_all:1, biz:biztypeid}
 
     request({path:'GET_PRESCRIPTION', data})
         .then((result)=>{

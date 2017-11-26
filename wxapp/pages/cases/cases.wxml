@@ -10,9 +10,9 @@
 
     <view class="archive-header">
         <text class='title'>我的</text>
-        <navigator url="/pages/share/share?scene=archive" class="">
+        <navigator url="/pages/share/share?scene={{scene}}" class="">
             <view class="btn-add">
-                <text>添加档案</text>
+                <text>添加</text>
                 <text> + </text>
             </view>
         </navigator>

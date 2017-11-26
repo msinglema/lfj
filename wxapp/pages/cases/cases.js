@@ -1,19 +1,24 @@
 const app = getApp()
 
 import util from '../../utils/util.js'
-const { request } = util
+const { scene_map, request } = util
 
 Page({
   data:{
     pi:1,
     ps:10,
     totalpage:0,
-    cases:[]
+    cases:[],
+    scene:''
   },
   formatTime:function(time){
   	return util.formatTime(time);
   },
   onLoad:function(options){
+    console.log('opts: ', options)
+    const { scene } = options
+    this.setData({ scene })
+    console.log(scene)
   	const time = util.formatTime(new Date())
   	console.log(time)
     // 页面初始化 options为页面跳转所带来的参数
@@ -24,13 +29,23 @@ Page({
     this.getData()
   },
   getData: function(){
-    const {data:{pi, ps, cases}} = this
+    const { data: { pi, ps, cases, scene}} = this
     const data = {pi, ps}
+    console.log(scene)
 
-    request({path:'GET_ARCHIVES', data})
+    let path
+    if (('share' === scene) || ('quiz' === scene)) {
+      path = 'GET_PRESCRIPTION'
+      data.biz = 'share' === scene ? 1 : 2 //分享：1，问答：2
+    } else {
+      path = 'GET_ARCHIVES'
+    }
+
+    console.log(path)
+    request({ path: path, data})
         .then((result)=>{
-          const { data:{archives, totalpage} } = result
-          this.setData({cases:cases.concat(archives), totalpage})
+          const { data: { items, totalpage} } = result
+          this.setData({ cases: cases.concat(items), totalpage})
         }, (error)=>{
           console.log('error: ', error)
         })

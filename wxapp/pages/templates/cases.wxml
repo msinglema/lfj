@@ -34,3 +34,36 @@
         </view>
     </view>
 </template>
+
+<template name="cases-simple">
+    <view class="cases_wrapper">
+        <view class="wa-row borderBot marginBot" wx:for="{{cases}}" wx:for-item="case" wx:key="{{case.Id}}">
+            <view class="avatar-wrapper">
+                <view class="otherName">
+                  <image class="otherAva" src="{{userInfo.avatarUrl}}"></image>
+                  <text>{{userInfo.nickName}}</text>
+                  
+                </view>
+                <view class="timeline">
+                  <text>{{case.AddTime_str}}</text>
+                </view>
+            </view>
+            <view class="case-content" style="padding:0">
+                <view class="case-title" wx:if="{{case.Title}}">
+                  <text>{{case.Title}}</text>
+                </view>
+
+                <view class="case-desc" wx:if="{{case.Content}}">
+                  <text>{{case.Content}}</text>
+                </view>
+
+                <view wx:if="{{case.address}}" class="padding_half">
+                    {{case.address}}
+                </view>
+                <view class="nickTime">
+                    <view class="ion-ios-compose-outline nickIcon"></view>
+                </view>
+            </view>
+        </view>
+    </view>
+</template>
