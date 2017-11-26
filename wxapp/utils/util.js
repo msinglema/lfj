@@ -114,12 +114,18 @@ const request = ({path, data, method='GET'}) => {
       dataType:'json',
       header: getHeader(),
       success: function(res) {
-        const { data:result } = res
-        if( -1 === result.ret ){
-          handleLogin()
+        console.log('res: ', res)
+        const { statusCode, data:result } = res
+        if( 200 !== statusCode ) {
+          reject(res)
         } else {
-          resolve(result)
+          if( -1 === result.ret ){
+            handleLogin()
+          } else {
+            resolve(result)
+          }
         }
+
       },
       fail: function(err) {
        reject(err)
