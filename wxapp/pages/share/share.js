@@ -96,7 +96,7 @@ Page({
     formSubmit: function(e) {
 
        const { value:formData } = e.detail
-       const { data:{img_list, scene} } = this
+       const { data: { img_list, scene} } = this
        formData.img_list = img_list
        console.log('formData: ', formData)
 
@@ -108,7 +108,7 @@ Page({
           formData.biztypeid = 'share' === scene ? 1 : 2 //分享：1，问答：2
        }
 
-       request({path, data:formData, method:'POST'})
+       request({ path, data: formData, method:'POST'})
         .then((data)=>{
             console.log('form submit data: ', data)
             wx.navigateTo({url: 'share_success'})
