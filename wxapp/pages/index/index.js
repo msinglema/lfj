@@ -11,12 +11,11 @@ Page({
     pi:1,
     ps:10,
     totalpage:0,
+    my_cases:[],
     cases:[],
 
-    tabs: ["分享", "问答"],
-    activeIndex: 0,
-    sliderOffset: 0,
-    sliderLeft: 0,
+    grids:['其他','儿科', '妇科', '慢病','骨科', '皮肤科','护理','口腔'],
+    grids_expand: false,
 
     userInfo: {},
     hasUserInfo: false,
@@ -52,44 +51,57 @@ Page({
     }
 
     var that = this;
-    wx.getSystemInfo({
-        success: function(res) {
-            that.setData({
-                sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth),
-                sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
-            });
-        }
-    });
-
-    this.getData(1)
+    this.getMyData()
+    this.getAllData(0)
   },
 
   showInput: function () {
       this.setData({
           inputShowed: true
-      });
+      })
   },
   hideInput: function () {
       this.setData({
           inputVal: "",
           inputShowed: false
-      });
+      })
   },
   clearInput: function () {
       this.setData({
           inputVal: ""
-      });
+      })
   },
   inputTyping: function (e) {
       this.setData({
           inputVal: e.detail.value
-      });
+      })
+  },
+
+  loadmore: function(e){
+    const { data:{pi, totalpage} } = this
+    console.log('load more')
+    if( pi < totalpage ){
+      this.setData({pi:pi+1})
+      this.getAllData(0)
+    }
+  },
+
+  getMyData: function(){
+    //bit:0, 代表问答和分享
+    const data = { pi:1, ps:1, biz:0 }
+    request({path:'GET_PRESCRIPTION', data})
+        .then((result)=>{
+          const { data:{items} } = result
+          this.setData({my_cases:items})
+        }, (error)=>{
+          console.log('error: ', error)
+        })
   },
 
   // temp
-  getData: function(biztypeid){
+  getAllData: function(biztypeid){
     const {data:{pi, ps, cases}} = this
-    const data = { pi, ps, show_all:1, biz:biztypeid}
+    const data = { pi, ps, show_all:1, biz:biztypeid }
 
     request({path:'GET_PRESCRIPTION', data})
         .then((result)=>{
@@ -110,7 +122,9 @@ Page({
     })
     this.getData(id+1)
   },
-
+  toggleExpand: function(e){
+    this.setData({grids_expand:!this.data.grids_expand})
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -119,4 +133,5 @@ Page({
       hasUserInfo: true
     })
   }
+
 })

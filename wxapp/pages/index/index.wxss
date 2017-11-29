@@ -19,3 +19,34 @@
 .weui-navbar__slider{
 	width:100%;
 }
+.my-cases .time-line{
+	text-align: right;
+	font-size:24rpx;
+	color:#666;
+}
+
+.grids-wrapper{
+	margin-top:20rpx;
+	background-color: #fff;
+	display:flex;
+	height: 130rpx;
+}
+.grid-arrow{
+	height: 130rpx; width: 60rpx;
+	display: flex; align-items:center; justify-content:center;
+}
+.grid-arrow image{
+	width: 25rpx; height:18rpx
+}
+.grid-arrow.reverse image{
+	transform:scaleY(-1);
+}
+
+.weui-grids{
+	border: none; flex:1;
+}
+.weui-grids .weui-grid{
+	width: 20%;
+	padding:10rpx;
+	border:none;
+}

@@ -1,6 +1,33 @@
 .cases_wrapper{
-	margin-top: 40rpx;
-	padding:20rpx 40rpx;
+	margin-top: 20rpx;
+	padding:0rpx;
+}
+
+.case-item{
+    padding: 10rpx;
+    background-color: #fff;
+}
+
+.case-content{
+    margin-top:10rpx;
+    margin-left:70rpx;
+}
+
+.case-title{
+    font-size: 34rpx;
+    font-weight: bold;
+}
+.case-desc{
+    display:flex;
+    justify-content:space-between;
+    margin-top: 10rpx;
+    font-size: 26rpx;
+}
+
+.image-item{
+    float:left;
+    width:30%;height:190rpx;
+    margin-right:10rpx; margin-top:10rpx;
 }
 
 .avatar-wrapper{
@@ -17,14 +44,12 @@
 }
 
 .otherName .otherAva{
-    width: 90rpx;
-    height: 90rpx;
-    margin-right: 20rpx;
-	border-radius: 45rpx
+    width: 60rpx;
+    height: 60rpx;
+    margin-right: 15rpx;
+	border-radius: 30rpx
 }
-.borderBot{
-    border-bottom: 1rpx solid #ccc
-}
+
 .nickTime{
     margin: 20rpx 0;
     position:relative;
@@ -46,25 +71,4 @@
 /** 自定义其他点击态样式类 **/
 .other-navigator-hover {
     color:red;
-}
-
-.case-content{
-    margin-top:20rpx;
-}
-
-.case-title{
-    font-size: 40rpx;
-    font-weight: bold;
-}
-.case-desc{
-	display:flex;
-	justify-content:space-between;
-	margin-top: 10rpx;
-	font-size: 30rpx;
-}
-
-.image-item{
-    float:left;
-    width:30%;height:190rpx;
-    margin-right:10rpx; margin-top:10rpx;
 }
