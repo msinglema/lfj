@@ -4,7 +4,8 @@
 		"pages/cases/cases",
 		"pages/share/share",
 		"pages/share/share_success",
-		"pages/profile/profile"
+		"pages/profile/profile",
+		"pages/search/search"
 	],
 	"tabBar": {
 		"list": [

@@ -11,48 +11,26 @@ Page({
     pi:1,
     ps:10,
     totalpage:0,
+    fetching:false,
     my_cases:[],
     cases:[],
 
-    grids:['其他','儿科', '妇科', '慢病','骨科', '皮肤科','护理','口腔'],
+    grids:['精选','儿科', '妇科', '慢病','骨科', '皮肤科','护理','口腔'],
     grids_expand: false,
 
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    userInfo: {}
   },
   //事件处理函数
   onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+    console.log('index onLoad')
 
-    var that = this;
-    this.getMyData()
-    this.getAllData(0)
+    app._getUserInfo().then((userInfo)=>{
+      this.setData({ userInfo })
+
+      this.getMyData()
+      this.getAllData(0)
+    })
+
   },
 
   showInput: function () {
@@ -76,12 +54,15 @@ Page({
           inputVal: e.detail.value
       })
   },
+  goSearch: function (e) {
+    wx.navigateTo({url: `../search/search?query=${this.data.inputVal}`})
+  },
 
   loadmore: function(e){
-    const { data:{pi, totalpage} } = this
+    const { data:{pi, totalpage, fetching} } = this
     console.log('load more')
-    if( pi < totalpage ){
-      this.setData({pi:pi+1})
+    if( pi < totalpage && !fetching ){
+      this.setData({pi:pi+1, fetching:true})
       this.getAllData(0)
     }
   },
@@ -106,7 +87,7 @@ Page({
     request({path:'GET_PRESCRIPTION', data})
         .then((result)=>{
           const { data:{items, totalpage} } = result
-          this.setData({cases:cases.concat(items), totalpage})
+          this.setData({cases:cases.concat(items), totalpage, fetching:false})
         }, (error)=>{
           console.log('error: ', error)
         })

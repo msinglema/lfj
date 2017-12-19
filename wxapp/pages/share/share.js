@@ -116,26 +116,5 @@ Page({
           console.log('error: ', error)
         })
 
-       // wx.request({
-       //   url,
-       //   data: formData,
-       //   method:'POST',
-       //   dataType:'json',
-       //   header: util.getHeader(),
-       //   success: function(res) {
-       //     console.log('res.data:', res.data)
-       //     const { data:result } = res
-       //     // not login
-       //     if( -1 === result.ret ){
-       //        util.handleLogin()
-       //     } else {
-       //        wx.navigateTo({url: 'share_success'})
-       //     }
-       //   },
-       //   fail: function(error) {
-       //    console.log('error:', error)
-       //   }
-       // })
-
      }
 })

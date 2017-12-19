@@ -1,0 +1,88 @@
+<import src="../templates/cases.wxml"/>
+
+<scroll-view class="search-wrapper" scroll-y="true" style="height:100%;">
+    <view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                <input type="text" class="weui-search-bar__input" placeholder="搜索" value="{{search}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="searchsubmit" />
+                <view class="weui-icon-clear" wx:if="{{search.length > 0}}" bindtap="clearInput">
+                    <icon type="clear" size="14"></icon>
+                </view>
+            </view>
+            <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                <icon class="weui-icon-search" type="search" size="14"></icon>
+                <view class="weui-search-bar__text">搜索</view>
+            </label>
+        </view>
+        <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+
+  <!-- <view class="weui-cells searchbar-result" wx:if="{{search.length > 0}}">
+      <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+              <view>实时搜索文本</view>
+          </view>
+      </navigator>
+      <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+          <view class="weui-cell__bd">
+              <view>实时搜索文本</view>
+          </view>
+      </navigator>
+  </view> -->
+
+   <view class="weui-panel weui-panel_access" wx:if="prescriptions.length > 0">
+       <view class="weui-panel__hd">分享和问答</view>
+       <view class="weui-panel__bd">
+           <view class="result-item" wx:for="{{prescriptions}}" wx:key="{{index}}">
+               <view class="weui-media-box weui-media-box_text result-content">
+                    <!-- <view class="avatar-wrapper">
+                        <view class="otherName"> <image class="otherAva" src="{{userInfo.avatarUrl}}"></image> <text>{{userInfo.nickName}}</text> </view>
+                        <view class="timeline"> <text>{{case.AddTime_str}}</text> </view>
+                    </view> -->
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{item.sTitle}}</view>
+                    <view class="weui-media-box__desc">{{item.sSummary}}</view>
+                    <view class="footer">
+                        <text class="author">{{userInfo.nickName}}</text>
+                        <text class="like">{{item.dwLikeNum}} 赞</text>
+                    </view>
+               </view>
+           </view>
+       </view>
+       <view class="weui-panel__ft">
+           <navigator url="/pages/cases/cases?scene=share" class="weui-cell weui-cell_access weui-cell_link" >
+               <view class="weui-cell__bd">更多分享</view>
+               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+           </navigator> 
+       </view>
+       <view class="weui-panel__ft">
+           <navigator url="/pages/cases/cases?scene=share" class="weui-cell weui-cell_access weui-cell_link" >
+               <view class="weui-cell__bd">更多提问</view>
+               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+           </navigator>
+       </view>
+   </view>
+
+   <view class="weui-panel weui-panel_access" wx:if="diseases.length > 0">
+       <view class="weui-panel__hd">疾病库</view>
+       <view class="weui-panel__bd">
+           <view class="result-item" wx:for="{{diseases}}" wx:key="{{index}}">
+               <view class="weui-media-box weui-media-box_text result-content">
+                    <view class="weui-media-box__title weui-media-box__title_in-text">{{item.sTitle}}</view>
+                    <view class="weui-media-box__desc">{{item.sSummary}}</view>
+                    <view class="footer">
+                        <text class="author">{{userInfo.nickName}}</text>
+                        <text class="like">{{item.dwLikeNum}} 赞</text>
+                    </view>
+               </view>
+           </view>
+       </view>
+       <view class="weui-panel__ft">
+           <navigator url="/pages/cases/cases?scene=share" class="weui-cell weui-cell_access weui-cell_link" >
+               <view class="weui-cell__bd">更多</view>
+               <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+           </navigator> 
+       </view>
+   </view>
+
+</scroll-view>

@@ -21,8 +21,15 @@ const APIConf = {
   'ADD_ARCHIVE':`${baseUrl}/archivesjson/add`,
   'ADD_IMAGE':`${baseUrl}/archivesjson/add_img`,
 
+  //prescription
   'GET_PRESCRIPTION':`${baseUrl}/prescriptionjson/manager`,
-  'ADD_PRESCRIPTION':`${baseUrl}/prescriptionjson/add`
+  'ADD_PRESCRIPTION':`${baseUrl}/prescriptionjson/add`,
+
+  //search
+  'SEARCH': `${baseUrl}/search/search`,
+
+  //user
+  'ADD_USER': `${baseUrl}/usrwx/addusr`
 }
 
 const getHeader = () => {
@@ -42,7 +49,11 @@ const getAPIPath =  name => {
   return url
 }
 
+let isLogging = false
 const handleLogin = () => {
+  console.log('handleLogin isLogging: ', isLogging)
+  if(isLogging) return
+  else isLogging = true
   wx.login({
     success: res => {
       // 发送 res.code 到后台换取 openId, sessionKey, unionId
@@ -61,8 +72,9 @@ const handleLogin = () => {
                   wx.setStorageSync('lfj_sess', lfj_sess)
                   wx.setStorageSync('sid', sid)
                   wx.switchTab({url: '/pages/index/index'})
+                  isLogging = false
               } catch (e) {
-                console.warn('set storag err: ', e)
+                console.warn('set storage err: ', e)
               }
             } else {
               console.warn('onlogin err: ', message)

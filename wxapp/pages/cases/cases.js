@@ -18,13 +18,12 @@ Page({
     console.log('opts: ', options)
     const { scene } = options
     this.setData({ scene })
-    console.log(scene)
-  	const time = util.formatTime(new Date())
-  	console.log(time)
+    wx.setNavigationBarTitle({
+      title: scene_map[scene].title
+    })
     // 页面初始化 options为页面跳转所带来的参数
-    console.log(app.globalData.userInfo);
-    this.setData({
-        userInfo:app.globalData.userInfo
+    app._getUserInfo().then((userInfo)=>{
+      this.setData({ userInfo })
     })
     this.getData()
   },
