@@ -33,29 +33,8 @@ Page({
 
   },
 
-  showInput: function () {
-      this.setData({
-          inputShowed: true
-      })
-  },
-  hideInput: function () {
-      this.setData({
-          inputVal: "",
-          inputShowed: false
-      })
-  },
-  clearInput: function () {
-      this.setData({
-          inputVal: ""
-      })
-  },
-  inputTyping: function (e) {
-      this.setData({
-          inputVal: e.detail.value
-      })
-  },
-  goSearch: function (e) {
-    wx.navigateTo({url: `../search/search?query=${this.data.inputVal}`})
+  goSearch: function () {
+      wx.navigateTo({url: `../search/search?query=${this.data.inputVal}`})
   },
 
   loadmore: function(e){

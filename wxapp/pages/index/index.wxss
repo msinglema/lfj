@@ -50,3 +50,6 @@
 	padding:10rpx;
 	border:none;
 }
+.search-bar__mock .weui-search-bar__form{
+	height: 60rpx;
+}
