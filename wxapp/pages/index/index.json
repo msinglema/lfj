@@ -1,5 +1,4 @@
 {
-	"navigationBarTitleText": "搜索",
 	"usingComponents": {
 		"c-search": "/components/c-search"
 	}

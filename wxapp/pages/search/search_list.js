@@ -12,21 +12,17 @@ Page({
 	},
 	onLoad:function(options){
 		app._getUserInfo().then((userInfo)=>{
-		  this.setData({ userInfo })
-		})
-		const { query } = options
-		if(query) {
-			this.doSearch(null, {query})
-			this.setData({query})
-		}
+	      this.setData({ userInfo })
+	    })
+	    const { query } = options
+	    if(query){
+	    	this.setData({inputShowed:true, query})
+	    	this.doSearch(query)
+	    }
 	},
-	doSearch: function(e, opts){
-		let query
-		if( null !== e ) query = e.detail.query
-		else query = opts.query
-
+	doSearch: function(query){
 		const { pi, ps } = this.data
-		const data = { pi, ps, query }
+		const data = { pi, ps, query: query ? query : this.data.query }
 		const path = 'SEARCH'
 
 		console.log(path)
@@ -40,7 +36,29 @@ Page({
 			  console.log('error: ', error)
 			})
 	},
+	//搜索框相关
+	showInput: function () {
+	    this.setData({
+	        inputShowed: true
+	    })
+	},
+	hideInput: function () {
+	    this.setData({
+	        query: "",
+	        inputShowed: false
+	    })
+	},
+	clearInput: function () {
+	    this.setData({
+	        query: ""
+	    })
+	},
+	inputTyping: function (e) {
+	    this.setData({
+	        query: e.detail.value
+	    })
+	},
 	searchsubmit: function (e){
-		this.doSearch(e.detail.query)
+		this.doSearch()
 	}
 })

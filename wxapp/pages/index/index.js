@@ -33,8 +33,24 @@ Page({
 
   },
 
-  goSearch: function () {
-      wx.navigateTo({url: `../search/search?query=${this.data.inputVal}`})
+  showInput: function () {
+    this.setData({inputShowed: true })
+  },
+  hideInput: function () {
+    this.setData({
+      query: "",
+      inputShowed: false
+    })
+  },
+  clearInput: function () {
+    this.setData({query: ""})
+  },
+  inputTyping: function (e) {
+    this.setData({query: e.detail.value })
+  },
+  doSearch: function (e) {
+      console.log('event: ', e)
+      wx.navigateTo({url: `../search/search?query=${e.detail.query}`})
   },
 
   loadmore: function(e){

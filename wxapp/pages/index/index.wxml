@@ -2,15 +2,8 @@
 
 <!--index.wxml-->
 <scroll-view scroll-y="true" style="height:100%;" bindscrolltolower="loadmore">
-
-  <view class="weui-search-bar search-bar__mock">
-      <view class="weui-search-bar__form">
-          <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="goSearch">
-              <icon class="weui-icon-search" type="search" size="14"></icon>
-              <view class="weui-search-bar__text">搜索</view>
-          </label>
-      </view>
-  </view>
+  
+  <c-search query="" bind:dosearch="doSearch"></c-search>
   
   <view class="weui-panel weui-panel_access my-cases">
       <view class="weui-panel__hd">我的分享和问答</view>

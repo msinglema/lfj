@@ -5,7 +5,8 @@
 		"pages/share/share",
 		"pages/share/share_success",
 		"pages/profile/profile",
-		"pages/search/search"
+		"pages/search/search",
+		"pages/search/search_list"
 	],
 	"tabBar": {
 		"list": [
