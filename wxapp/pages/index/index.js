@@ -15,8 +15,9 @@ Page({
     my_cases:[],
     cases:[],
 
-    grids:['精选','儿科', '妇科', '慢病','骨科', '皮肤科','护理','口腔'],
-    grids_expand: false,
+    // categories:['精选','儿科', '妇科', '慢病','骨科', '皮肤科','护理','口腔'],
+    categories:[],
+    category_expand: false,
 
     userInfo: {}
   },
@@ -27,6 +28,7 @@ Page({
     app._getUserInfo().then((userInfo)=>{
       this.setData({ userInfo })
 
+      this.getCategory()
       this.getMyData()
       this.getAllData(0)
     })
@@ -60,6 +62,23 @@ Page({
       this.setData({pi:pi+1, fetching:true})
       this.getAllData(0)
     }
+  },
+
+  getCategory: function(){
+    request({path:'GET_CATEGORY'})
+        .then((result)=>{
+          const { data:categories } = result
+          this.setData({categories})
+        }, (error)=>{
+          console.log('error: ', error)
+        })
+  },
+  changeCategory: function(e){
+    console.log('e: ', e)
+    const { target:{dataset} } = e
+    const { id } = dataset
+    this.setData({cases:[], cur_id:id})
+    this.getAllData(id)
   },
 
   getMyData: function(){
@@ -99,7 +118,7 @@ Page({
     this.getData(id+1)
   },
   toggleExpand: function(e){
-    this.setData({grids_expand:!this.data.grids_expand})
+    this.setData({category_expand:!this.data.category_expand})
   },
   getUserInfo: function(e) {
     console.log(e)

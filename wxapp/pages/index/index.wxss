@@ -29,10 +29,9 @@
 	margin-top:20rpx;
 	background-color: #fff;
 	display:flex;
-	height: 130rpx;
 }
 .grid-arrow{
-	height: 130rpx; width: 60rpx;
+	height: 100rpx; width: 60rpx;
 	display: flex; align-items:center; justify-content:center;
 }
 .grid-arrow image{
@@ -47,9 +46,13 @@
 }
 .weui-grids .weui-grid{
 	width: 20%;
-	padding:10rpx;
-	border:none;
+	padding: 10rpx;
+	margin:15rpx;
+	border:1rpx solid #ccc;
+}
+.weui-grids .weui-grid .weui-grid__label{
+	margin-top:0;
 }
 .search-bar__mock .weui-search-bar__form{
-	height: 60rpx;
+	height: 40rpx;
 }

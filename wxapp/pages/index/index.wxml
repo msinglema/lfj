@@ -28,16 +28,16 @@
       </view>
   </view>
   
-  <view class="grids-wrapper" style="height:{{grids_expand ? 'auto' : '130rpx'}};">
+  <view class="grids-wrapper" style="height:{{category_expand ? 'auto' : '100rpx'}};">
     <view class="weui-grids">
-        <block wx:for="{{grids}}" wx:for-item="grid" wx:key="*this">
-            <view class="weui-grid" hover-class="weui-grid_active">
-                <image class="weui-grid__icon" src="../../image/icon_tabbar.png" />
-                <view class="weui-grid__label">{{grid}}</view>
+        <block wx:for="{{categories}}" wx:for-item="item" wx:key="*this">
+            <view class="{{cur_id === item.Id?'weui-grid weui-grid_active':'weui-grid'}}">
+                <!-- <image class="weui-grid__icon" src="../../image/icon_tabbar.png" /> -->
+                <view class="weui-grid__label" data-id="{{item.Id}}" bindtap="changeCategory">{{item.Name}}</view>
             </view>
         </block>
     </view> 
-    <view class="grid-arrow {{grids_expand ? 'reverse' : ''}}" bindtap="toggleExpand"><image src="../../image/down.jpg" /></view>
+    <view class="grid-arrow {{category_expand ? 'reverse' : ''}}" bindtap="toggleExpand"><image src="../../image/down.jpg" /></view>
   </view>
   
   <template is="cases" data="{{cases, userInfo}}"></template>

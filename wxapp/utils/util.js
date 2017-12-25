@@ -29,7 +29,9 @@ const APIConf = {
   'SEARCH': `${baseUrl}/search/search`,
 
   //user
-  'ADD_USER': `${baseUrl}/usrwx/addusr`
+  'ADD_USER': `${baseUrl}/usrwx/addusr`,
+
+  'GET_CATEGORY': `${baseUrl}/Diseasejson/get_category`
 }
 
 const getHeader = () => {
