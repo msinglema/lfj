@@ -31,10 +31,8 @@ Component({
       this.setData({query: e.detail.value })
     },
     searchSubmit: function (e){
-      console.log(this.data)
-      console.log('event: ', event)
       const { query } = this.data
-      this.triggerEvent('dosearch', {query})
+      this.triggerEvent('dosearch', {query}, {bubbles:false})
     }
   }
 })

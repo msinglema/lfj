@@ -60,7 +60,7 @@ Page({
     console.log('load more')
     if( pi < totalpage && !fetching ){
       this.setData({pi:pi+1, fetching:true})
-      this.getAllData(0)
+      this.getAllData(999)
     }
   },
 
@@ -77,7 +77,7 @@ Page({
     console.log('e: ', e)
     const { target:{dataset} } = e
     const { id } = dataset
-    this.setData({cases:[], cur_id:id})
+    this.setData({cases:[], cur_id:id, pi:0})
     this.getAllData(id)
   },
 
@@ -94,9 +94,9 @@ Page({
   },
 
   // temp
-  getAllData: function(biztypeid){
+  getAllData: function(category){
     const {data:{pi, ps, cases}} = this
-    const data = { pi, ps, show_all:1, biz:biztypeid }
+    const data = { pi, ps, show_all:1, biz:0, cate:category }
 
     request({path:'GET_PRESCRIPTION', data})
         .then((result)=>{

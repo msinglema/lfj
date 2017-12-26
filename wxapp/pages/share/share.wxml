@@ -17,8 +17,8 @@
             <view class="weui-label">选择类型</view>
           </view>
           <view class="weui-cell__bd">
-            <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" name="category" >
-              <view class="weui-input">{{array[index]}}</view>
+            <picker bindchange="bindPickerChange" value="{{categories[index].Id}}" range="{{categories}}" range-key="Name" name="category" >
+              <view class="weui-input">{{categories[index].Name}}</view>
             </picker>
           </view>
         </view>

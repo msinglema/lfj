@@ -6,21 +6,22 @@ const { scene_map, upLoadImage, request } = util
 const app = getApp()
 
 Page({
+    data: {
+        index: 0,
+        categories: [],
+        files:[],
+        img_list:[],
+        desc:'',
+        count:9
+    },
     onLoad: function (opts) {
       console.log('opts: ', opts)
       const { scene } = opts
       const scene_info = scene_map[scene]
       const { title, textarea_ph } = scene_info
       this.setData({scene, textarea_ph})
+      this.getCategory()
       wx.setNavigationBarTitle({ title })
-    },
-    data: {
-        index: 0,
-        array: ['其他','儿科', '妇科', '慢病','骨科', '皮肤科','护理','口腔'],
-        files:[],
-        img_list:[],
-        desc:'',
-        count:9
     },
     chooseImage: function(e){
         const {data} = this
@@ -115,6 +116,14 @@ Page({
         }, (error)=>{
           console.log('error: ', error)
         })
-
+     },
+     getCategory: function(){
+       request({path:'GET_CATEGORY'})
+           .then((result)=>{
+             const { data:categories } = result
+             this.setData({categories})
+           }, (error)=>{
+             console.log('error: ', error)
+           })
      }
 })

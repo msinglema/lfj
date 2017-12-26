@@ -7,6 +7,7 @@ Page({
 	data:{
 		pi:0,
 		ps:2,
+		query:'',
 		prescriptions:[],
 		diseases:[]
 	},
@@ -16,9 +17,14 @@ Page({
 		})
 		const { query } = options
 		if(query) {
-			this.doSearch(null, {query})
+			// this.doSearch(null, {query})
 			this.setData({query})
 		}
+	},
+	onShow:function(){
+		const { query } = this.data
+		console.log('query in onshow: ', query)
+		if( '' !==  query ) this.doSearch(null, {query})
 	},
 	doSearch: function(e, opts){
 		let query
