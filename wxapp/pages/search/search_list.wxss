@@ -1,0 +1,16 @@
+.search-list .result-item {
+	margin: 0rpx 30rpx 0rpx; 
+	border-bottom: 2rpx solid #e5e5e5;
+}
+.search-list .result-item:last-child{
+	border-bottom: none;
+}
+.search-list .result-item .result-content{
+	padding: 10rpx 0rpx;
+}
+.search-list .footer{
+	font-size: 24rpx;
+	color:#666;
+	display: flex;
+	justify-content:space-between;
+}

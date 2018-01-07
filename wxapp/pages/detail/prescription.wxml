@@ -1,0 +1,22 @@
+<view class="page detail">
+
+    <view class="weui-media-box weui-media-box_text">
+         <view class="avatar-wrapper">
+             <view class="otherName"> <image class="otherAva" src="{{userInfo.avatarUrl}}"></image> <text>{{userInfo.nickName}}</text> </view>
+             <!-- <view class="timeline"> <text>{{case.AddTime_str}}</text> </view> -->
+         </view>
+         <view class="weui-media-box__title weui-media-box__title_in-text">标题</view>
+         <view class="weui-media-box__desc">内容or摘要</view>
+         <view class="statistics">
+             <text class="author">用户1</text>
+             <text class="like">666 赞</text>
+             <text class="comment">666 评论</text>
+         </view>
+
+         <view class="footer">
+             <view class="operation-like">点赞</view>
+             <view class="operation-comment">评论</view>
+         </view>
+    </view>
+
+</view>

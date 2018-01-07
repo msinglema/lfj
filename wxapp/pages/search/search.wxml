@@ -7,7 +7,7 @@
    <view class="weui-panel weui-panel_access" wx:if="prescriptions.length > 0">
        <view class="weui-panel__hd">分享和问答</view>
        <view class="weui-panel__bd">
-           <view class="result-item" wx:for="{{prescriptions}}" wx:key="{{index}}">
+           <view class="result-item" wx:for="{{prescriptions}}" wx:key="{{index}}" data-id="{{item.sUrl}}" data-btype="{{item.dwFromtype}}" bindtap="showDetail">
                <view class="weui-media-box weui-media-box_text result-content">
                     <!-- <view class="avatar-wrapper">
                         <view class="otherName"> <image class="otherAva" src="{{userInfo.avatarUrl}}"></image> <text>{{userInfo.nickName}}</text> </view>
@@ -39,7 +39,7 @@
    <view class="weui-panel weui-panel_access" wx:if="diseases.length > 0">
        <view class="weui-panel__hd">疾病库</view>
        <view class="weui-panel__bd">
-           <view class="result-item" wx:for="{{diseases}}" wx:key="{{index}}">
+           <view class="result-item" wx:for="{{diseases}}" wx:key="{{index}}"  data-id="{{item.sUrl}}" bindtap="showDetail">
                <view class="weui-media-box weui-media-box_text result-content">
                     <view class="weui-media-box__title weui-media-box__title_in-text">{{item.sTitle}}</view>
                     <view class="weui-media-box__desc">{{item.sSummary}}</view>

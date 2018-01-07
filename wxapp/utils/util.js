@@ -31,7 +31,11 @@ const APIConf = {
   //user
   'ADD_USER': `${baseUrl}/usrwx/addusr`,
 
-  'GET_CATEGORY': `${baseUrl}/Diseasejson/get_category`
+  //category
+  'GET_CATEGORY': `${baseUrl}/Diseasejson/get_category`,
+
+  //detail
+  'GET_DETAIL_DISEASE': `${baseUrl}/disease/disjson`
 }
 
 const getHeader = () => {

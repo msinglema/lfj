@@ -1,0 +1,5 @@
+@import "../../app.wxss";
+
+.detail-summary{
+	
+}

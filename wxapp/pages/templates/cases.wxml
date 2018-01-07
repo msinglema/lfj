@@ -4,8 +4,8 @@
         <view class="wa-row borderBot marginBot case-item" wx:for="{{cases}}" wx:for-item="case" wx:key="{{case.Id}}">
             <view class="avatar-wrapper">
                 <view class="otherName">
-                  <image class="otherAva" src="{{userInfo.avatarUrl}}"></image>
-                  <text>{{userInfo.nickName}}</text>
+                  <image class="otherAva" src="{{case.AvatarUrl}}"></image>
+                  <text>{{case.Name}}</text>
                 </view>
                 <view class="timeline">
                   <text>{{case.AddTime_str}}</text>

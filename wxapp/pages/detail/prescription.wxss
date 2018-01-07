@@ -1,0 +1,8 @@
+@import "../../app.wxss";
+
+.detail .statistics{
+	font-size: 24rpx;
+	color:#666;
+	display: flex;
+	justify-content:space-between;
+}

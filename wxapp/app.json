@@ -6,7 +6,9 @@
 		"pages/share/share_success",
 		"pages/profile/profile",
 		"pages/search/search",
-		"pages/search/search_list"
+		"pages/search/search_list",
+		"pages/detail/disease",
+		"pages/detail/prescription"
 	],
 	"tabBar": {
 		"list": [
