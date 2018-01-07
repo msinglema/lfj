@@ -120,12 +120,15 @@ Page({
   toggleExpand: function(e){
     this.setData({category_expand:!this.data.category_expand})
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+
+  imagePreview:function(e){
+    const { currentTarget:target } = e
+    const { dataset:{src, list} } = target
+
+    const urls = list.map((item)=>`https://${item.img_id}`)
+    wx.previewImage({
+        current: `https://${src}`, // 当前显示图片的http链接
+        urls: urls // 需要预览的图片http链接列表
     })
   }
 
