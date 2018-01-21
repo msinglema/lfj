@@ -15,10 +15,19 @@
              <text class="comment">{{detail.TypeId}}  评论</text>
          </view>
 
-         <view class="footer">
-             <view class="operation-like">点赞</view>
-             <view class="operation-comment">评论</view>
+         <view class="image-wrapper">
+             <image class="weui-article__img" src="../../image/pic_article.png" mode="aspectFit" style="height: 180px" />
          </view>
+
     </view>
+
+     <view class="footer">
+        <view class="opertaion-item operation-home">首页</view>
+
+        <view class="opertaion-item-group">
+            <view class="opertaion-item operation-like">点赞</view>
+            <view class="opertaion-item operation-comment">评论</view>
+        </view>
+     </view>
 
 </view>

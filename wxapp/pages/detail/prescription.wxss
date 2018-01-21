@@ -1,6 +1,16 @@
 @import "../../app.wxss";
 
+.detail{
+	position: relative;
+	height:100%;
+}
+
+.detail .avatar-wrapper{
+	margin-bottom:20rpx;
+}
+
 .detail .statistics{
+<<<<<<< HEAD
 	font-size: 24rpx;
 	color:#666;
 	display: flex;
@@ -8,4 +18,30 @@
 }
 .statistics text{
 	margin:0 20rpx;
+=======
+	font-size: 24rpx; color:#666;
+	margin:20rpx 0;
+	display: flex; justify-content:space-between;
+}
+
+.detail .image-wrapper{
+	margin:20rpx 0;
+}
+
+.detail .footer{
+	font-size:30rpx;
+	position:absolute;
+	right:20rpx; bottom:20rpx; left: 20rpx;
+	display:flex; justify-content:space-between;
+}
+
+.detail .footer .opertaion-item{
+	margin-left:20rpx;
+	padding: 20rpx 40rpx;
+	border: 1rpx solid #c1c1c1;
+	border-radius: 8rpx;
+}
+.detail .footer .opertaion-item-group{
+	display:inline-flex;
+>>>>>>> 7c37096a50a0ce13bc3bc15c369e90b81faf945a
 }
