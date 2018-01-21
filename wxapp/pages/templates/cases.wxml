@@ -1,7 +1,7 @@
 <!-- template.wxml -->
 <template name="cases">
     <view class="cases_wrapper">
-        <view class="wa-row borderBot marginBot case-item" wx:for="{{cases}}" wx:for-item="case" wx:key="{{case.Id}}">
+        <view class="wa-row borderBot marginBot case-item" wx:for="{{cases}}" wx:for-item="case" wx:key="{{case.Id}}" data-id="{{case.Id}}" data-btype="{{case.BizTypeId}}" bindtap="showDetail">
             <view class="avatar-wrapper">
                 <view class="otherName">
                   <image class="otherAva" src="{{case.AvatarUrl}}"></image>

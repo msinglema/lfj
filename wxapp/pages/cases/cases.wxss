@@ -30,6 +30,5 @@
     display:flex;
     justify-content:space-between;
     margin: 60rpx 40rpx 20rpx 40rpx;
-    padding-top:60rpx;
 }
 .archive-header .btn-add{ color: #1eac11;}

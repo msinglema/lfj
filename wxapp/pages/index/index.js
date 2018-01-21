@@ -130,6 +130,13 @@ Page({
         current: `https://${src}`, // 当前显示图片的http链接
         urls: urls // 需要预览的图片http链接列表
     })
+  },
+  showDetail: function (e){
+    const { currentTarget:target } = e
+    const { dataset:{btype, id} } = target
+    console.log('btype, id: ', btype, id)
+    if( "1" === btype || "2" === btype ) wx.navigateTo({url: `../detail/prescription?id=${id}`})
+    if( "3" === btype ) wx.navigateTo({url: `../detail/disease?id=${id}`})
   }
 
 })
