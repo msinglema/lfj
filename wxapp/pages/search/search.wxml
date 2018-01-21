@@ -9,14 +9,10 @@
        <view class="weui-panel__bd">
            <view class="result-item" wx:for="{{prescriptions}}" wx:key="{{index}}" data-id="{{item.sUrl}}" data-btype="{{item.dwFromtype}}" bindtap="showDetail">
                <view class="weui-media-box weui-media-box_text result-content">
-                    <!-- <view class="avatar-wrapper">
-                        <view class="otherName"> <image class="otherAva" src="{{userInfo.avatarUrl}}"></image> <text>{{userInfo.nickName}}</text> </view>
-                        <view class="timeline"> <text>{{case.AddTime_str}}</text> </view>
-                    </view> -->
                     <view class="weui-media-box__title weui-media-box__title_in-text">{{item.sTitle}}</view>
                     <view class="weui-media-box__desc">{{item.sSummary}}</view>
                     <view class="footer">
-                        <text class="author">{{userInfo.nickName}}</text>
+                        <text class="author">{{item.Name}}</text>
                         <text class="like">{{item.dwLikeNum}} 赞</text>
                     </view>
                </view>

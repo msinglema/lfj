@@ -30,7 +30,7 @@ Page({
 
       this.getCategory()
       this.getMyData()
-      this.getAllData(0)
+      this.getAllData('999')
     })
 
   },

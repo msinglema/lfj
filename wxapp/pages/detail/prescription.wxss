@@ -18,8 +18,7 @@
 .statistics text{
 	margin:0 20rpx;
 	font-size: 24rpx; color:#666;
-	margin:20rpx 0;
-	display: flex; justify-content:space-between;
+	display: flex; justify-content:flex-end;
 }
 
 .detail .image-wrapper{

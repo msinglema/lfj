@@ -1,0 +1,9 @@
+textarea {
+    width: 700rpx;
+    min-height: 400rpx;
+    padding: 25rpx 0;
+}
+
+.form-container .comment-btn{
+	margin-top: 40rpx;
+}

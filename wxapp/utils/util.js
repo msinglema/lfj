@@ -35,8 +35,14 @@ const APIConf = {
   //category
   'GET_CATEGORY': `${baseUrl}/Diseasejson/get_category`,
 
-  //detail
-  'GET_DETAIL_DISEASE': `${baseUrl}/disease/disjson`
+  //disease
+  'GET_DETAIL_DISEASE': `${baseUrl}/disease/disjson`,
+
+  //like
+  'SET_LIKE': `${baseUrl}/likejson/set_like`,
+
+  //comment
+  'ADD_COMMENT': `${baseUrl}/commentjson/add`
 }
 
 const getHeader = () => {

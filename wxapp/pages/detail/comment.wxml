@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="form-container">
+  <form bindsubmit="addComment">
+
+    <view class="weui-section">
+      <view class="weui-cells">
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__bd">
+               <textarea bindblur="bindTextAreaBlur" placeholder="想写点什么呢？" auto-height name="content" />
+            </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="page__bd page__bd_spacing">
+      <button class="weui-btn comment-btn" type="primary" formType="submit" >发表评论</button>
+    </view>
+
+  </form>
+</view>
