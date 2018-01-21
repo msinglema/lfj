@@ -24,6 +24,7 @@ const APIConf = {
   //prescription
   'GET_PRESCRIPTION':`${baseUrl}/prescriptionjson/manager`,
   'ADD_PRESCRIPTION':`${baseUrl}/prescriptionjson/add`,
+  'GET_PRESCRIPTION_ITEM':`${baseUrl}/prescriptionjson/getitem`,
 
   //search
   'SEARCH': `${baseUrl}/search/search`,

@@ -2,15 +2,17 @@
 
     <view class="weui-media-box weui-media-box_text">
          <view class="avatar-wrapper">
-             <view class="otherName"> <image class="otherAva" src="{{userInfo.avatarUrl}}"></image> <text>{{userInfo.nickName}}</text> </view>
+             <view class="otherName"> <image class="otherAva" src="{{detail.AvatarUrl}}"></image> <text>{{detail.Name}}</text> </view>
              <!-- <view class="timeline"> <text>{{case.AddTime_str}}</text> </view> -->
          </view>
-         <view class="weui-media-box__title weui-media-box__title_in-text">标题</view>
-         <view class="weui-media-box__desc">内容or摘要</view>
+         <view class="weui-media-box__title weui-media-box__title_in-text">{{detail.Title}}</view>
+         <view class="weui-media-box__desc">{{detail.Content}}</view>
+         <view class="image-list" style="overflow:hidden;width:100%;margin:10px 0" wx:if="{{detail.ImgList}}">
+             <view class="image-item" wx:for="{{detail.ImgList}}" wx:for-item="img" wx:key="*this" style="background:url('https://{{img.img_id}}') no-repeat;background-size:cover;" data-src="{{img.img_id}}" data-list="{{detail.ImgList}}" bindtap="imagePreview"></view>
+         </view>
          <view class="statistics">
-             <text class="author">用户1</text>
-             <text class="like">666 赞</text>
-             <text class="comment">666 评论</text>
+             <text class="like">{{detail.TypeId}} 赞</text>
+             <text class="comment">{{detail.TypeId}}  评论</text>
          </view>
 
          <view class="footer">

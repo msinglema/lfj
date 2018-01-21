@@ -4,5 +4,8 @@
 	font-size: 24rpx;
 	color:#666;
 	display: flex;
-	justify-content:space-between;
+	justify-content:flex-end;
+}
+.statistics text{
+	margin:0 20rpx;
 }

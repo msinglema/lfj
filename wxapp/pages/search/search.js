@@ -52,6 +52,7 @@ Page({
 	showDetail: function (e){
 		const { currentTarget:target } = e
 		const { dataset:{btype, id} } = target
+		console.log('btype, id: ', btype, id)
 		if( "1" === btype ) wx.navigateTo({url: `../detail/prescription?id=${id}`})
 		if( "3" === btype ) wx.navigateTo({url: `../detail/disease?id=${id}`})
 	}
