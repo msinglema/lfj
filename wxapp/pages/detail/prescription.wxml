@@ -11,9 +11,12 @@
              <view class="image-item" wx:for="{{detail.ImgList}}" wx:for-item="img" wx:key="*this" style="background:url('https://{{img.img_id}}') no-repeat;background-size:cover;" data-src="{{img.img_id}}" data-list="{{detail.ImgList}}" bindtap="imagePreview"></view>
          </view>
          <view class="statistics">
-             <text class="like">{{detail.TypeId}} 赞</text>
-             <text class="comment">{{detail.TypeId}}  评论</text>
+             <text class="like">{{detail.LikeCount}} 赞</text>
+             <text class="comment">{{detail.CommCount}}  评论</text>
          </view>
+        <view class="comment-list">
+            <view class="comment-item" wx:for="{{comments}}" wx:for-item="comment" wx:key="*this" >{{comment.Content}}</view>
+        </view>
 
     </view>
 

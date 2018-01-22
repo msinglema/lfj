@@ -21,6 +21,7 @@ Page({
       request({ method:'POST', path, data })
           .then((result)=>{
               console.log('result: ', result)
+              wx.navigateBack({delta: 1})
           }, (error)=>{
               console.log('error: ', error)
           })

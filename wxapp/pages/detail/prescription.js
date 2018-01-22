@@ -5,7 +5,8 @@ const { request } = util
 
 Page({
     data:{
-        detail:{}
+        detail:{},
+        comments:[]
     },
     onLoad:function(options){
         console.log( options )
@@ -17,10 +18,24 @@ Page({
         const data = { item_id: id }
         request({ path, data })
             .then((result)=>{
-                this.setData({detail:result.data[0]})
+                const detail = result.data[0]
+                this.setData({detail})
+
+                const { TypeId, BizTypeId } = detail
+                request({ path:'GET_COMMENT', data:{pi:0, ps:100, biz:BizTypeId, item_type:TypeId, item_id: id} })
+                  .then((result)=>{
+                        console.log('result: ', result)
+                        const comments = result.data
+                        this.setData({comments})
+                    }, (error)=>{
+                      console.log('error: ', error)
+                    })
+
             }, (error)=>{
               console.log('error: ', error)
             })
+
+
     },
     onShow:function(){
     },
