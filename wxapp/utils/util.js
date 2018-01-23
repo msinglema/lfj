@@ -42,7 +42,8 @@ const APIConf = {
   'SET_LIKE': `${baseUrl}/likejson/set_like`,
 
   //comment
-  'ADD_COMMENT': `${baseUrl}/commentjson/add`
+  'ADD_COMMENT': `${baseUrl}/commentjson/add`,
+  'GET_COMMENT': `${baseUrl}/commentjson/get_comment`
 }
 
 const getHeader = () => {

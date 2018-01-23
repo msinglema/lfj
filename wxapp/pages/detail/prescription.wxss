@@ -41,3 +41,12 @@
 .detail .footer .opertaion-item-group{
 	display:inline-flex;
 }
+
+.comment-item{
+	border-top: 1px solid #e1e1e1;
+	padding: 20rpx 0;
+}
+.comment-item .content{
+	font-size: 24rpx; color:#666;
+	margin-left: 60rpx;
+}
