@@ -1,8 +1,7 @@
 @import "../../app.wxss";
 
 .detail{
-	position: relative;
-	height:100%;
+	padding-bottom:100rpx;
 }
 
 .detail .avatar-wrapper{
@@ -25,11 +24,15 @@
 	margin:20rpx 0;
 }
 
+.detail .detail-box{}
 .detail .footer{
 	font-size:30rpx;
-	position:absolute;
-	right:20rpx; bottom:20rpx; left: 20rpx;
-	display:flex; justify-content:space-between;
+	position:fixed;
+	right:0rpx; bottom:0rpx; left:0rpx;
+	display:flex; justify-content:flex-end;
+	background-color:#eee;
+	padding:20rpx;
+	border:1px solid #e1e1e1;
 }
 
 .detail .footer .opertaion-item{
@@ -48,5 +51,10 @@
 }
 .comment-item .content{
 	font-size: 24rpx; color:#666;
-	margin-left: 60rpx;
+	margin-left: 65rpx;
+}
+
+.operation-like.active{
+	color:#fff;
+	background-color:#1AAD19;
 }

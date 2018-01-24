@@ -15,39 +15,34 @@ Page({
           this.setData({ userInfo })
         })
         const { id } = options
-        const path = 'GET_PRESCRIPTION_ITEM'
-        const data = { item_id: id }
-        request({ path, data })
-            .then((result)=>{
-                const detail = result.data[0]
-                this.setData({detail})
-
-                //获取评论
-                request({ path:'GET_COMMENT', data:{pi:0, ps:100, biz:detail.BizTypeId, item_type:detail.typeId, item_id:id} })
-                    .then((result)=>{
-                        const comments = result.data
-                        this.setData({comments, first:false})
-                    }, (error)=>{
-                      console.log('error: ', error)
-                    })
-
-            }, (error)=>{
-              console.log('error: ', error)
-            })
-
-
+        this.setData({id})
+        this.getDetail(id)
     },
     onShow:function(){
         const { first, detail } = this.data
         if(first) return
         //获取评论
-        request({ path:'GET_COMMENT', data:{pi:0, ps:100, biz:detail.BizTypeId, item_type:detail.typeId, item_id:detail.Id} })
-            .then((result)=>{
-                const comments = result.data
-                this.setData({comments})
-            }, (error)=>{
-              console.log('error: ', error)
-            })
+        this.getDetail()
+    },
+    getDetail:function(id){
+      const data = { item_id: id ? id : this.data.id }
+      request({ path:'GET_PRESCRIPTION_ITEM', data })
+          .then((result)=>{
+              const detail = result.data[0]
+              this.setData({detail})
+
+              //获取评论
+              request({ path:'GET_COMMENT', data:{pi:0, ps:100, biz:detail.BizTypeId, item_type:detail.TypeId, item_id:detail.Id} })
+                  .then((result)=>{
+                      const comments = result.data
+                      this.setData({comments, first:false})
+                  }, (error)=>{
+                    console.log('error: ', error)
+                  })
+
+          }, (error)=>{
+            console.log('error: ', error)
+          })
     },
     setLike:function(){
         const { data:{detail} } = this
@@ -56,6 +51,9 @@ Page({
         request({ method:'POST', path, data })
             .then((result)=>{
                 console.log('result: ', result)
+                const { like_stat } = result
+                const diff = like_stat ? 1 : -1
+                this.setData({detail:{...detail, Like_stat:like_stat, LikeCount:detail.LikeCount + diff }})
             }, (error)=>{
                 console.log('error: ', error)
             })

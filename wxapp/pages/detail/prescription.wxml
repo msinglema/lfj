@@ -1,6 +1,6 @@
 <view class="page detail">
 
-    <scroll-view scroll-y view class="weui-media-box weui-media-box_text">
+    <view class="weui-media-box weui-media-box_text detail-box">
          <view class="avatar-wrapper">
              <view class="otherName"> <image class="otherAva" src="{{detail.AvatarUrl}}"></image> <text>{{detail.Name}}</text> </view>
              <!-- <view class="timeline"> <text>{{case.AddTime_str}}</text> </view> -->
@@ -14,9 +14,6 @@
              <text class="like">{{detail.LikeCount}} 赞</text>
              <text class="comment">{{detail.CommCount}}  评论</text>
          </view>
-        <view class="comment-list">
-            <view class="comment-item" wx:for="{{comments}}" wx:for-item="comment" wx:key="*this" >{{comment.Content}}</view>
-        </view>
 
         <view class="comment-list">
              <view class="comment-item" wx:for="{{comments}}" wx:for-item="comment" wx:key="{{comment.Id}}">
@@ -25,13 +22,11 @@
              </view>
         </view>
 
-    </scroll-view>
+    </view>
 
      <view class="footer">
-        <view class="opertaion-item operation-home">首页</view>
-
         <view class="opertaion-item-group">
-            <view class="opertaion-item operation-like" bindtap="setLike">点赞</view>
+            <view class="opertaion-item operation-like {{detail.Like_stat ? 'active' : '' }}" bindtap="setLike">点赞</view>
             <view class="opertaion-item operation-comment" bindtap="goComment">评论</view>
         </view>
      </view>

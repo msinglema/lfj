@@ -32,7 +32,7 @@
        </view>
    </view>
 
-   <view class="weui-panel weui-panel_access" wx:if="diseases.length > 0">
+   <!-- <view class="weui-panel weui-panel_access" wx:if="diseases.length > 0">
        <view class="weui-panel__hd">疾病库</view>
        <view class="weui-panel__bd">
            <view class="result-item" wx:for="{{diseases}}" wx:key="{{index}}"  data-id="{{item.sUrl}}" bindtap="showDetail">
@@ -52,6 +52,6 @@
                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
            </navigator> 
        </view>
-   </view>
+   </view> -->
 
 </scroll-view>
