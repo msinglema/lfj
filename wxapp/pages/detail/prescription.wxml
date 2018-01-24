@@ -1,6 +1,6 @@
 <view class="page detail">
 
-    <view class="weui-media-box weui-media-box_text">
+    <scroll-view scroll-y view class="weui-media-box weui-media-box_text">
          <view class="avatar-wrapper">
              <view class="otherName"> <image class="otherAva" src="{{detail.AvatarUrl}}"></image> <text>{{detail.Name}}</text> </view>
              <!-- <view class="timeline"> <text>{{case.AddTime_str}}</text> </view> -->
@@ -18,7 +18,14 @@
             <view class="comment-item" wx:for="{{comments}}" wx:for-item="comment" wx:key="*this" >{{comment.Content}}</view>
         </view>
 
-    </view>
+        <view class="comment-list">
+             <view class="comment-item" wx:for="{{comments}}" wx:for-item="comment" wx:key="{{comment.Id}}">
+                 <view class="otherName"> <image class="otherAva" src="{{comment.AvatarUrl}}"></image> <text>{{comment.Name}}</text> </view>
+                 <view class="content">{{comment.Content}} </view>
+             </view>
+        </view>
+
+    </scroll-view>
 
      <view class="footer">
         <view class="opertaion-item operation-home">首页</view>

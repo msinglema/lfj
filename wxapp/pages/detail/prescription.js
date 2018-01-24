@@ -6,6 +6,7 @@ const { request } = util
 Page({
     data:{
         detail:{},
+        first:true,
         comments:[]
     },
     onLoad:function(options){
@@ -21,12 +22,11 @@ Page({
                 const detail = result.data[0]
                 this.setData({detail})
 
-                const { TypeId, BizTypeId } = detail
-                request({ path:'GET_COMMENT', data:{pi:0, ps:100, biz:BizTypeId, item_type:TypeId, item_id: id} })
-                  .then((result)=>{
-                        console.log('result: ', result)
+                //获取评论
+                request({ path:'GET_COMMENT', data:{pi:0, ps:100, biz:detail.BizTypeId, item_type:detail.typeId, item_id:id} })
+                    .then((result)=>{
                         const comments = result.data
-                        this.setData({comments})
+                        this.setData({comments, first:false})
                     }, (error)=>{
                       console.log('error: ', error)
                     })
@@ -38,11 +38,21 @@ Page({
 
     },
     onShow:function(){
+        const { first, detail } = this.data
+        if(first) return
+        //获取评论
+        request({ path:'GET_COMMENT', data:{pi:0, ps:100, biz:detail.BizTypeId, item_type:detail.typeId, item_id:detail.Id} })
+            .then((result)=>{
+                const comments = result.data
+                this.setData({comments})
+            }, (error)=>{
+              console.log('error: ', error)
+            })
     },
     setLike:function(){
         const { data:{detail} } = this
         const path = 'SET_LIKE'
-        const data = { item_id: detail.Id, item_type: detail.BizTypeId }
+        const data = { item_id: parseInt(detail.Id), item_type: parseInt(detail.BizTypeId) }
         request({ method:'POST', path, data })
             .then((result)=>{
                 console.log('result: ', result)
